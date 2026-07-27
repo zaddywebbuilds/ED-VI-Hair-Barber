@@ -164,6 +164,18 @@ body {
 /* ── Reveal primitives ─────────────────────────────────────── */
 .mask-line { overflow: hidden; display: block; }
 
+/* ── Indicateur « en train d'écrire » ──────────────────────────
+   En CSS et non via Framer Motion : une animation `repeat: Infinity`
+   à l'intérieur d'un <AnimatePresence> empêche la sortie de se
+   terminer, et les bulles ne se démontent jamais.               */
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%           { opacity: 1;   transform: translateY(-2px); }
+}
+.typing-dot {
+  animation: typing-dot 1s ease-in-out infinite;
+}
+
 /* ── Image treatments ──────────────────────────────────────── */
 .img-zoom {
   transition: transform 1.1s var(--ease-out), filter 0.7s ease;
