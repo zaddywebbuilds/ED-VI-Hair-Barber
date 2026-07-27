@@ -1,17 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { galleryImages } from '../data/galleryData';
-
-// Assign varied aspect ratios for visual interest
-const aspectRatios = [
-  'aspect-square', 'aspect-[4/3]', 'aspect-[4/3]', 'aspect-square',
-  'aspect-[16/9]', 'aspect-square', 'aspect-[4/3]', 'aspect-square',
-  'aspect-square', 'aspect-[4/3]', 'aspect-square', 'aspect-[16/9]',
-  'aspect-[4/3]', 'aspect-square', 'aspect-square', 'aspect-[4/3]',
-  'aspect-square', 'aspect-[16/9]', 'aspect-[4/3]', 'aspect-square',
-];
+import { homeGalleryImages } from '../data/galleryData';
 
 interface LightboxProps {
   index: number;
@@ -21,7 +11,7 @@ interface LightboxProps {
 }
 
 function Lightbox({ index, onClose, onPrev, onNext }: LightboxProps) {
-  const img = galleryImages[index];
+  const img = homeGalleryImages[index];
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -40,7 +30,7 @@ function Lightbox({ index, onClose, onPrev, onNext }: LightboxProps) {
   return (
     <motion.div
       className="fixed inset-0 z-[300] flex items-center justify-center"
-      style={{ background: 'rgba(28,15,10,0.95)' }}
+      style={{ background: 'rgba(42,31,26,0.94)' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -49,44 +39,48 @@ function Lightbox({ index, onClose, onPrev, onNext }: LightboxProps) {
       aria-modal="true"
       aria-label="Visionneuse de photos"
     >
-      {/* Image */}
       <motion.img
         key={index}
         src={img.src}
         alt={img.alt}
         className="max-w-[90vw] max-h-[85vh] object-contain"
-        initial={{ scale: 0.92, opacity: 0 }}
+        style={{ borderRadius: 18 }}
+        initial={{ scale: 0.94, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.25 }}
         onClick={(e) => e.stopPropagation()}
       />
 
-      {/* Controls */}
       <button
         onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-6 right-6 text-cream/60 hover:text-cream p-2"
+        className="absolute top-6 right-6 p-2 transition-opacity hover:opacity-100 opacity-60"
+        style={{ color: '#FDF4E8' }}
         aria-label="Fermer"
       >
         <X size={24} />
       </button>
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-cream/60 hover:text-cream p-2"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 transition-opacity hover:opacity-100 opacity-60"
+        style={{ color: '#FDF4E8' }}
         aria-label="Photo précédente"
       >
         <ChevronLeft size={32} />
       </button>
       <button
         onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-cream/60 hover:text-cream p-2"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 transition-opacity hover:opacity-100 opacity-60"
+        style={{ color: '#FDF4E8' }}
         aria-label="Photo suivante"
       >
         <ChevronRight size={32} />
       </button>
 
-      {/* Counter */}
-      <span className="absolute bottom-6 left-1/2 -translate-x-1/2 font-condensed text-xs tracking-widest text-steel">
-        {index + 1} / {galleryImages.length}
+      <span
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 font-condensed text-xs tracking-widest"
+        style={{ color: 'rgba(253,244,232,0.6)' }}
+      >
+        {index + 1} / {homeGalleryImages.length}
       </span>
     </motion.div>
   );
@@ -94,98 +88,92 @@ function Lightbox({ index, onClose, onPrev, onNext }: LightboxProps) {
 
 export default function SalonGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(headingRef, { once: true });
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const openLightbox = (i: number) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
   const prevImage = useCallback(() => {
-    setLightboxIndex((i) => (i !== null ? (i - 1 + galleryImages.length) % galleryImages.length : null));
+    setLightboxIndex((i) =>
+      i !== null ? (i - 1 + homeGalleryImages.length) % homeGalleryImages.length : null
+    );
   }, []);
   const nextImage = useCallback(() => {
-    setLightboxIndex((i) => (i !== null ? (i + 1) % galleryImages.length : null));
-  }, []);
-
-  // Horizontal scroll with mouse wheel
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        el.scrollLeft += e.deltaY;
-      }
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
+    setLightboxIndex((i) => (i !== null ? (i + 1) % homeGalleryImages.length : null));
   }, []);
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden" style={{ background: '#1C0F0A' }}>
-      {/* Heading */}
-      <div ref={headingRef} className="max-w-7xl mx-auto px-6 mb-12">
-        <motion.p
-          className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4" style={{ color: '#B58A4A' }}
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-        >
-          Galerie
-        </motion.p>
-        <motion.h2
-          className="font-serif"
-          style={{ fontSize: 'clamp(32px, 4vw, 52px)', color: '#F1E8D8' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.1 }}
-        >
-          Un salon avec du caractère
-        </motion.h2>
-      </div>
+    <section className="py-20 md:py-28" style={{ background: '#FDF4E8' }}>
+      <div className="max-w-[1340px] mx-auto px-6 md:px-10">
 
-      {/* Horizontal scroll */}
-      <div
-        ref={scrollRef}
-        className="gallery-scroll flex gap-4 overflow-x-auto px-6 pb-4"
-        style={{ scrollbarWidth: 'thin', cursor: 'grab' }}
-      >
-        {galleryImages.map((img, i) => (
-          <div
-            key={img.id}
-            className={`shrink-0 overflow-hidden cursor-pointer group relative ${aspectRatios[i] || 'aspect-square'}`}
-            style={{ width: i % 5 === 0 ? '360px' : '280px' }}
-            onClick={() => openLightbox(i)}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              loading="lazy"
-              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
-            />
-            {/* Hover brass border */}
-            <div
-              className="absolute inset-0 border border-brass opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"
-            />
+        {/* En-tête */}
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div className="max-w-xl">
+            <motion.p
+              className="eyebrow mb-5"
+              style={{ color: '#A8763C' }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Galerie
+            </motion.p>
+            <motion.h2
+              className="display-md text-balance"
+              style={{ color: '#2A1F1A' }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Un salon avec{' '}
+              <span className="italic" style={{ color: '#A8763C' }}>du caractère.</span>
+            </motion.h2>
           </div>
-        ))}
+
+          <motion.a
+            href="#/galerie"
+            data-cursor="hover"
+            className="group inline-flex items-center gap-2.5 font-condensed text-[12px] tracking-[0.2em] uppercase transition-opacity hover:opacity-70"
+            style={{ color: '#A8763C' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Voir toute la galerie
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </motion.a>
+        </div>
+
+        {/* Grille */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {homeGalleryImages.map((img, i) => (
+            <motion.button
+              key={img.id}
+              type="button"
+              onClick={() => setLightboxIndex(i)}
+              data-cursor="hover"
+              className="overflow-hidden group block w-full text-left"
+              style={{ borderRadius: 24, boxShadow: '0 12px 36px rgba(160,100,70,0.16)' }}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              aria-label={`Agrandir la photo ${i + 1}`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="w-full h-full object-cover img-zoom"
+                style={{ aspectRatio: '3 / 4' }}
+              />
+            </motion.button>
+          ))}
+        </div>
       </div>
 
-      {/* View all link */}
-      <div className="max-w-7xl mx-auto px-6 mt-10 text-right">
-        <a
-          href="#/galerie"
-          className="font-condensed text-[12px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-          style={{ color: '#B58A4A' }}
-        >
-          Voir toute la galerie →
-        </a>
-      </div>
-
-      {/* Lightbox */}
       {lightboxIndex !== null && (
         <Lightbox
           index={lightboxIndex}
-          onClose={closeLightbox}
+          onClose={() => setLightboxIndex(null)}
           onPrev={prevImage}
           onNext={nextImage}
         />

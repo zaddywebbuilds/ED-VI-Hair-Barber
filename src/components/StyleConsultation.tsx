@@ -81,7 +81,7 @@ export default function StyleConsultation() {
   const selectedStyle = styles.find((s) => s.id === selected);
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#F1E8D8' }}>
+    <section className="py-24 md:py-32" style={{ background: '#FDF4E8' }}>
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
         <div className="mb-12">

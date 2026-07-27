@@ -18,7 +18,7 @@ export const services: Service[] = [
     description: "Une coupe construite autour de votre visage, de votre implantation et de la façon dont vous vous coiffez réellement.",
     duration: null, // [À CONFIRMER]
     price: null,    // [À CONFIRMER]
-    image: "/ED-VI-Hair-Barber/images/photo_06.jpg",
+    image: "/ED-VI-Hair-Barber/images/photo_10.jpg",
     active: true,
     featured: true,
     confirmedByOwner: true,
@@ -30,7 +30,7 @@ export const services: Service[] = [
     description: "Longueur, structure, lignes et équilibre : la barbe est travaillée pour accompagner le visage.",
     duration: null,
     price: null,
-    image: "/ED-VI-Hair-Barber/images/photo_10.jpg",
+    image: "/ED-VI-Hair-Barber/images/photo_11.jpg",
     active: true,
     featured: false,
     confirmedByOwner: true,
@@ -42,7 +42,7 @@ export const services: Service[] = [
     description: "Un rendez-vous complet pour harmoniser la coupe, la barbe et les finitions.",
     duration: null,
     price: null,
-    image: "/ED-VI-Hair-Barber/images/photo_07.jpg",
+    image: "/ED-VI-Hair-Barber/images/photo_12.jpg",
     active: true,
     featured: false,
     confirmedByOwner: true,

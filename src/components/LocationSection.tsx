@@ -18,13 +18,13 @@ export default function LocationSection() {
   };
 
   return (
-    <section className="overflow-hidden" style={{ background: '#F5EDE0' }}>
+    <section className="overflow-hidden" style={{ background: '#FDF4E8' }}>
       <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
 
         {/* Left: Info */}
         <motion.div
           className="flex flex-col justify-center px-8 md:px-16 py-16"
-          style={{ background: '#F5EDE0' }}
+          style={{ background: '#FDF4E8' }}
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -110,7 +110,7 @@ export default function LocationSection() {
         {/* Right: Map */}
         <motion.div
           className="min-h-[400px] lg:min-h-0 flex items-center p-4"
-          style={{ background: '#F5EDE0' }}
+          style={{ background: '#FDF4E8' }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}

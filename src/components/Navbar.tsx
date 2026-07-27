@@ -15,30 +15,28 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { pathname } = useLocation();
-
-  // Seule la page d'accueil ouvre sur un hero sombre plein écran.
-  const overHero = pathname === '/' && !isScrolled;
+  useLocation(); // re-render à chaque changement de route
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Inversion du contraste selon le fond survolé
-  const fg = overHero ? '#F1E8D8' : '#1C0F0A';
-  const fgMuted = overHero ? 'rgba(241,232,216,0.66)' : '#5A4030';
+  // Le site est clair de bout en bout : le texte reste sombre.
+  const fg = '#2A1F1A';
+  const fgMuted = '#5C4A3F';
 
   return (
     <>
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: overHero ? 'transparent' : 'rgba(241,232,216,0.90)',
-          backdropFilter: overHero ? 'none' : 'blur(14px)',
-          borderBottom: overHero ? '1px solid transparent' : '1px solid rgba(181,138,74,0.18)',
+          background: isScrolled ? 'rgba(253,244,232,0.92)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(14px)' : 'none',
+          borderBottom: isScrolled ? '1px solid rgba(201,169,97,0.22)' : '1px solid transparent',
+          boxShadow: isScrolled ? '0 8px 24px rgba(120,70,50,0.07)' : 'none',
         }}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-[70px]">
@@ -66,7 +64,7 @@ export default function Navbar() {
                     isActive ? 'active' : ''
                   }`
                 }
-                style={({ isActive }) => ({ color: isActive ? '#B58A4A' : fg })}
+                style={({ isActive }) => ({ color: isActive ? '#A8763C' : fg })}
               >
                 {link.label}
               </NavLink>
@@ -79,11 +77,11 @@ export default function Navbar() {
               to="/contact"
               data-cursor="hover"
               className="hidden md:inline-flex items-center px-6 py-2.5 rounded-full font-condensed text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-90"
-              style={
-                overHero
-                  ? { background: 'rgba(241,232,216,0.12)', color: '#F1E8D8', border: '1px solid rgba(241,232,216,0.28)', backdropFilter: 'blur(10px)' }
-                  : { background: '#1C0F0A', color: '#F1E8D8', border: '1px solid #1C0F0A' }
-              }
+              style={{
+                background: '#2A1F1A',
+                color: '#FDF4E8',
+                boxShadow: '0 8px 22px rgba(120,70,50,0.18)',
+              }}
             >
               Rendez-vous
             </Link>
