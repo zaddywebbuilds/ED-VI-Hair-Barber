@@ -5,6 +5,9 @@ import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import MobileActionBar from './components/MobileActionBar';
 import ScrollProgress from './components/ScrollProgress';
+import CustomCursor from './components/CustomCursor';
+import StickyBookingBar from './components/StickyBookingBar';
+import SocialProofPopup from './components/SocialProofPopup';
 
 const Home = lazy(() => import('./pages/Home'));
 const Services = lazy(() => import('./pages/Services'));
@@ -28,6 +31,7 @@ export default function App() {
     <HelmetProvider>
       <Router>
         <div className="relative">
+          <CustomCursor />
           <ScrollProgress />
           <Navbar />
           <Suspense
@@ -49,6 +53,8 @@ export default function App() {
               <Route path="/politique-de-confidentialite" element={<Privacy />} />
             </Routes>
           </Suspense>
+          <StickyBookingBar />
+          <SocialProofPopup />
           <MobileActionBar />
         </div>
       </Router>

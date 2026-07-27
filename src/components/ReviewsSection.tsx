@@ -1,15 +1,21 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { businessConfig } from '../data/businessConfig';
-import { ExternalLink } from 'lucide-react';
+import { reviews, reviewStats } from '../data/reviewsData';
 
-function StarRow({ count = 5 }: { count?: number }) {
+function StarRow({ count = 5, size = 14 }: { count?: number; size?: number }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-0.5" aria-label={`${count} étoiles sur 5`}>
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} width="18" height="18" viewBox="0 0 16 16"
-          fill={i < count ? '#B58A4A' : '#D9CBB8'}
-          xmlns="http://www.w3.org/2000/svg">
+        <svg
+          key={i}
+          width={size}
+          height={size}
+          viewBox="0 0 16 16"
+          fill={i < count ? '#B58A4A' : '#DDD0BC'}
+          aria-hidden="true"
+        >
           <path d="M8 1l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4L2.2 5.2l4-.6L8 1z" />
         </svg>
       ))}
@@ -17,141 +23,136 @@ function StarRow({ count = 5 }: { count?: number }) {
   );
 }
 
-const reviews = [
-  {
-    name: 'Vincent F.',
-    stars: 5,
-    date: 'il y a 4 mois',
-    text: "Je recommande vivement ce salon. L'accueil est fantastique et l'atmosphère est adorable. Le coiffeur prend le temps de bien faire les choses, et le résultat est impeccable. Mon dégradé est très propre, les contours sont nets et la coupe est exactement comme je le voulais.",
-  },
-  {
-    name: 'Thibaut Da Silva',
-    stars: 5,
-    date: 'il y a 4 mois',
-    text: "Barbier au top, coupe parfaite et un super accueil. Je recommande vivement !",
-  },
-  {
-    name: 'bar tabac63',
-    stars: 5,
-    date: 'il y a 9 mois',
-    text: "Excellent salon ! ED-VI est accueillant et professionnel. Je suis reparti avec exactement la coupe que je voulais. Je le recommande vivement !",
-  },
-  {
-    name: 'Gaël C',
-    stars: 5,
-    date: 'il y a 1 an',
-    text: "Service toujours au top et excellents conseils. Cela fait deux ans que j'y vais et je ne suis jamais déçu. Rendez-vous rapides et toujours à l'heure. Je recommande à 100 %. L'ambiance du salon et la tenue du propriétaire sont toujours impeccables :)",
-  },
-  {
-    name: 'Robin V.',
-    stars: 5,
-    date: 'il y a 1 an',
-    text: "Avant de rencontrer ce barbier, j'étais ordinaire. Après être allé chez Ed-Vi, je suis devenu un autre homme. Je recommande sans hésiter !",
-  },
-  {
-    name: 'Sylvain',
-    stars: 5,
-    date: 'il y a 2 ans',
-    text: "C'est le meilleur salon de coiffure pour homme de Clermont, sans hésitation ! Le salon est très agréable, et Eddy est un professionnel d'exception — élégant, raffiné et perfectionniste. Il est méticuleux dans tout ce qu'il fait.",
-  },
-  {
-    name: 'Michel L.',
-    stars: 5,
-    date: 'il y a 2 ans',
-    text: "Nous étions quatre — le marié et ses témoins — arrivés la veille d'un mariage pour une coupe et une barbe soignées. Quelle belle expérience chez ED-VI ! Outre la super ambiance, le travail était exceptionnel. Nous sommes tous ravis.",
-  },
-  {
-    name: 'Geoffrey Vacher',
-    stars: 5,
-    date: 'il y a 2 ans',
-    text: "Je ne laisse pas souvent des avis, mais celui-ci le mérite vraiment. EDVI est super sympa et de bon conseil. Même avec très peu de barbe, il a réussi à me créer un look vraiment stylé, et la coupe était aussi fantastique !",
-  },
-];
-
 export default function ReviewsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#FFFFFF' }}>
-      <div className="max-w-6xl mx-auto px-6" ref={ref}>
+    <section className="py-24 md:py-36" style={{ background: '#FBF6EC' }}>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12" ref={ref}>
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.p
-            className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4"
-            style={{ color: '#B58A4A' }}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-          >
-            Avis Google vérifiés
-          </motion.p>
-          <motion.h2
-            className="font-serif mb-8"
-            style={{ fontSize: 'clamp(32px, 4vw, 52px)', color: '#1C0F0A' }}
+        {/* ── Header : titre à gauche, note à droite ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 items-end">
+          <div className="lg:col-span-7">
+            <motion.p
+              className="eyebrow mb-6"
+              style={{ color: '#B58A4A' }}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+            >
+              Avis Google vérifiés
+            </motion.p>
+            <motion.h2
+              className="display-lg text-balance"
+              style={{ color: '#1C0F0A' }}
+              initial={{ opacity: 0, y: 26 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Ils sont passés
+              <br />
+              <span className="italic" style={{ color: '#B58A4A' }}>par le fauteuil.</span>
+            </motion.h2>
+          </div>
+
+          {/* Bloc note */}
+          <motion.div
+            className="lg:col-span-5 flex items-center gap-6 lg:justify-end"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            Ils sont passés par le fauteuil
-          </motion.h2>
-
-          {/* Big rating display */}
-          <motion.div
-            className="flex flex-col items-center gap-3"
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="font-serif font-light" style={{ fontSize: '72px', color: '#1C0F0A', lineHeight: 1 }}>5,0</div>
-            <StarRow count={5} />
-            <p className="font-condensed text-xs tracking-widest uppercase" style={{ color: '#5A4030' }}>
-              145 avis sur Google Maps
-            </p>
+            <div
+              className="font-serif font-light leading-none"
+              style={{ fontSize: 'clamp(64px, 8vw, 104px)', color: '#1C0F0A' }}
+            >
+              {reviewStats.average}
+            </div>
+            <div className="pb-2">
+              <StarRow count={5} size={17} />
+              <p className="eyebrow mt-2.5" style={{ color: '#5A4030', letterSpacing: '0.2em' }}>
+                {reviewStats.total} avis Google
+              </p>
+            </div>
           </motion.div>
         </div>
 
-        {/* Review cards grid — real Google reviews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        {/* ── Grille d'avis (masonry) ── */}
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-5 mb-14">
           {reviews.map((review, i) => (
-            <motion.div
-              key={i}
-              className="rounded-2xl p-6 flex flex-col gap-3"
-              style={{ background: '#F5EDE0', border: '1px solid #D9CBB8' }}
-              initial={{ opacity: 0, y: 20 }}
+            <motion.figure
+              key={review.name}
+              className="break-inside-avoid mb-5 rounded-2xl p-7 transition-shadow duration-500 hover:shadow-[0_20px_48px_-16px_rgba(28,15,10,0.18)]"
+              style={{ background: '#FFFFFF', border: '1px solid #E8DCC8' }}
+              initial={{ opacity: 0, y: 26 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.05 }}
+              transition={{ duration: 0.65, delay: 0.08 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
             >
               <StarRow count={review.stars} />
-              <p className="font-sans text-sm leading-relaxed flex-1" style={{ color: '#3A2A1E' }}>
-                "{review.text}"
-              </p>
-              <div className="flex items-center justify-between pt-2" style={{ borderTop: '1px solid #D9CBB8' }}>
-                <p className="font-sans font-semibold text-xs" style={{ color: '#1C0F0A' }}>{review.name}</p>
-                <p className="font-condensed text-[10px] tracking-wider" style={{ color: '#B58A4A' }}>
-                  {review.date}
-                </p>
-              </div>
-            </motion.div>
+
+              <blockquote
+                className="font-sans text-[14.5px] leading-relaxed mt-4 mb-6"
+                style={{ color: '#3A2A1E' }}
+              >
+                «&nbsp;{review.text}&nbsp;»
+              </blockquote>
+
+              <figcaption
+                className="flex items-center gap-3 pt-5"
+                style={{ borderTop: '1px solid #EFE5D4' }}
+              >
+                <span
+                  className="grid place-items-center w-9 h-9 rounded-full shrink-0 font-serif text-base"
+                  style={{ background: '#1C0F0A', color: '#D4AF6F' }}
+                  aria-hidden="true"
+                >
+                  {review.name.charAt(0)}
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-sans font-semibold text-[13px] truncate" style={{ color: '#1C0F0A' }}>
+                    {review.name}
+                  </span>
+                  <span
+                    className="block font-condensed text-[11px] tracking-[0.14em] uppercase mt-0.5"
+                    style={{ color: '#8A7560' }}
+                  >
+                    {review.date}
+                  </span>
+                </span>
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
 
-        {/* CTA to Google */}
-        <div className="text-center">
+        {/* ── CTA ── */}
+        <motion.div
+          className="flex flex-col items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.4 }}
+        >
           <a
             href={businessConfig.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-condensed text-sm tracking-widest uppercase text-white transition-opacity hover:opacity-80"
-            style={{ background: '#1C0F0A' }}
+            data-cursor="hover"
+            className="group inline-flex items-center gap-3 pl-8 pr-2 py-2 rounded-full transition-all duration-300 hover:gap-5"
+            style={{ background: '#1C0F0A', color: '#F1E8D8' }}
           >
-            <ExternalLink size={14} />
-            Voir les 145 avis sur Google
+            <span className="eyebrow" style={{ letterSpacing: '0.2em' }}>
+              Voir les {reviewStats.total} avis sur Google
+            </span>
+            <span
+              className="grid place-items-center w-10 h-10 rounded-full transition-transform duration-300 group-hover:rotate-45"
+              style={{ background: '#B58A4A' }}
+            >
+              <ArrowUpRight size={15} strokeWidth={2} style={{ color: '#1C0F0A' }} />
+            </span>
           </a>
-          <p className="font-condensed text-xs tracking-wider uppercase mt-4" style={{ color: '#858585' }}>
-            Avis publiés et vérifiés par Google Maps.
+          <p className="font-condensed text-[11px] tracking-[0.18em] uppercase" style={{ color: '#9C8B7A' }}>
+            Avis publiés et vérifiés par Google Maps
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

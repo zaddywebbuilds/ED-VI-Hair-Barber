@@ -2,56 +2,208 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   ED-VI Hair Barber — Design foundation
+   Warm cream editorial with dark cinematic anchors.
+   ============================================================ */
+
+:root {
+  --cream:    #F1E8D8;
+  --cream-2:  #F5EDE0;
+  --paper:    #D9CBB8;
+  --ink:      #1C0F0A;
+  --ink-2:    #3A2A1E;
+  --mute:     #5A4030;
+  --brass:    #B58A4A;
+  --brass-lt: #D4AF6F;
+  --walnut:   #2B211B;
+  --carbon:   #120C08;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io:  cubic-bezier(0.65, 0, 0.35, 1);
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: #F1E8D8;
-  color: #1C0F0A;
+  background-color: var(--cream);
+  color: var(--ink);
   font-family: 'Manrope', system-ui, sans-serif;
   overflow-x: hidden;
+  margin: 0;
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--cream);
 }
 
 @layer utilities {
-  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-  .font-condensed { font-family: 'Barlow Condensed', sans-serif; }
+  .font-serif    { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-condensed{ font-family: 'Barlow Condensed', sans-serif; }
+
+  /* Editorial display scale — tight, confident */
+  .display-xl {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(52px, 9vw, 148px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    font-weight: 300;
+  }
+  .display-lg {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(38px, 6vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    font-weight: 300;
+  }
+  .display-md {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(30px, 4.2vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+
+  .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .text-balance { text-wrap: balance; }
 }
 
 .text-shadow-brass {
   text-shadow: 0 0 40px rgba(181, 138, 74, 0.3);
 }
 
-/* Animated underline for nav */
-.nav-link {
-  position: relative;
+/* ── Grain overlay ─────────────────────────────────────────── */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ── Nav underline ─────────────────────────────────────────── */
+.nav-link { position: relative; }
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   left: 0;
   width: 0;
   height: 1px;
-  background: #B58A4A;
-  transition: width 0.3s ease;
+  background: var(--brass);
+  transition: width 0.4s var(--ease-out);
 }
 .nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+.nav-link.active::after { width: 100%; }
+
+/* ── Custom cursor (pointer devices only) ──────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 9999px;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--cream);
+    margin: -3px 0 0 -3px;
+  }
+  .cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(241, 232, 216, 0.5);
+    margin: -18px 0 0 -18px;
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out),
+                margin 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  }
+  .cursor-ring.is-hovering {
+    width: 68px;
+    height: 68px;
+    margin: -34px 0 0 -34px;
+    border-color: var(--brass);
+  }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F1E8D8; }
-::-webkit-scrollbar-thumb { background: #B58A4A; border-radius: 2px; }
+/* ── Marquee ───────────────────────────────────────────────── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 42s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
 
-/* Gallery horizontal scroll */
+/* ── Reveal primitives ─────────────────────────────────────── */
+.mask-line { overflow: hidden; display: block; }
+
+/* ── Image treatments ──────────────────────────────────────── */
+.img-zoom {
+  transition: transform 1.1s var(--ease-out), filter 0.7s ease;
+  will-change: transform;
+}
+.group:hover .img-zoom { transform: scale(1.06); }
+
+@keyframes slow-drift {
+  0%, 100% { transform: scale(1.06) translate(0, 0); }
+  50%      { transform: scale(1.12) translate(-1.2%, -1%); }
+}
+.ken-burns { animation: slow-drift 24s var(--ease-io) infinite; }
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--brass); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brass-lt); }
+
 .gallery-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #B58A4A #1C0F0A;
+  scrollbar-color: var(--brass) transparent;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Focus visibility ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ken-burns, .marquee-track { animation: none !important; }
 }
