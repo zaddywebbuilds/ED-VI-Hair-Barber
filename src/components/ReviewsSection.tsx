@@ -17,14 +17,55 @@ function StarRow({ count = 5 }: { count?: number }) {
   );
 }
 
-// Only initials and stars shown — no fabricated review text
-const cards = [
-  { initial: 'M. R.', stars: 5, label: 'Coupe homme' },
-  { initial: 'J. L.', stars: 5, label: 'Taille de barbe' },
-  { initial: 'A. K.', stars: 5, label: 'Coupe et barbe' },
-  { initial: 'T. B.', stars: 5, label: 'Coupe homme' },
-  { initial: 'S. P.', stars: 5, label: 'Conseil & style' },
-  { initial: 'C. D.', stars: 5, label: 'Fidèle depuis 2021' },
+const reviews = [
+  {
+    name: 'Sylvain',
+    stars: 5,
+    date: 'il y a 2 ans',
+    text: "C'est le meilleur salon de coiffure pour homme de Clermont, sans hésitation ! Le salon est très agréable, et Eddy est un professionnel d'exception — élégant, raffiné et perfectionniste. Il est méticuleux dans tout ce qu'il fait…",
+  },
+  {
+    name: 'Michel L.',
+    stars: 5,
+    date: 'il y a 2 ans',
+    text: "Nous étions quatre — le marié et ses témoins — arrivés la veille d'un mariage pour une coupe et une barbe soignées. Quelle belle expérience chez ED-VI ! Outre la super ambiance, le travail était exceptionnel. Nous sommes tous ravis…",
+  },
+  {
+    name: 'Geoffrey Vacher',
+    stars: 5,
+    date: 'il y a 2 ans',
+    text: "Je ne laisse pas souvent des avis, mais celui-ci le mérite vraiment. EDVI est super sympa et de bon conseil. Même avec très peu de barbe, il a réussi à me créer un look vraiment stylé, et la coupe était aussi fantastique !…",
+  },
+  {
+    name: 'Gaël C',
+    stars: 5,
+    date: 'il y a 1 an',
+    text: "Service toujours au top et excellents conseils. Cela fait deux ans que j'y vais et je ne suis jamais déçu. Rendez-vous rapides et toujours à l'heure. Je recommande à 100 %. L'ambiance du salon et la tenue du propriétaire sont toujours impeccables :)",
+  },
+  {
+    name: 'Vincent F.',
+    stars: 5,
+    date: 'il y a 4 mois',
+    text: "Je recommande vivement ce salon. L'accueil est fantastique et l'atmosphère est adorable. Le coiffeur prend le temps de bien faire les choses, et le résultat est impeccable. Mon dégradé est très propre, les contours sont nets et la coupe est exactement comme…",
+  },
+  {
+    name: 'Thibaut Da Silva',
+    stars: 5,
+    date: 'il y a 4 mois',
+    text: "Barbier au top, coupe parfaite et un super accueil. Je recommande vivement !",
+  },
+  {
+    name: 'bar tabac63',
+    stars: 5,
+    date: 'il y a 9 mois',
+    text: "Excellent salon ! ED-VI est accueillant et professionnel. Je suis reparti avec exactement la coupe que je voulais. Je le recommande vivement !",
+  },
+  {
+    name: 'Robin V.',
+    stars: 5,
+    date: 'il y a 1 an',
+    text: "Avant de rencontrer ce barbier, j'étais ordinaire. Après être allé chez Ed-Vi, je suis devenu un autre homme. Je recommande sans hésiter !",
+  },
 ];
 
 export default function ReviewsSection() {
@@ -70,9 +111,9 @@ export default function ReviewsSection() {
           </motion.div>
         </div>
 
-        {/* Review cards grid — initials + stars only */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-          {cards.map((card, i) => (
+        {/* Review cards grid — real Google reviews */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          {reviews.map((review, i) => (
             <motion.div
               key={i}
               className="rounded-2xl p-6 flex flex-col gap-3"
@@ -81,16 +122,16 @@ export default function ReviewsSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.05 }}
             >
-              <StarRow count={card.stars} />
-              <div>
-                <p className="font-sans font-semibold text-sm" style={{ color: '#1C0F0A' }}>{card.initial}</p>
-                <p className="font-condensed text-xs tracking-wider uppercase mt-0.5" style={{ color: '#B58A4A' }}>
-                  {card.label}
+              <StarRow count={review.stars} />
+              <p className="font-sans text-sm leading-relaxed flex-1" style={{ color: '#3A2A1E' }}>
+                "{review.text}"
+              </p>
+              <div className="flex items-center justify-between pt-2" style={{ borderTop: '1px solid #D9CBB8' }}>
+                <p className="font-sans font-semibold text-xs" style={{ color: '#1C0F0A' }}>{review.name}</p>
+                <p className="font-condensed text-[10px] tracking-wider" style={{ color: '#B58A4A' }}>
+                  {review.date}
                 </p>
               </div>
-              <p className="font-sans text-xs italic" style={{ color: '#5A4030' }}>
-                Avis vérifié sur Google Maps →
-              </p>
             </motion.div>
           ))}
         </div>
@@ -105,10 +146,10 @@ export default function ReviewsSection() {
             style={{ background: '#1C0F0A' }}
           >
             <ExternalLink size={14} />
-            Lire tous les avis sur Google
+            Voir les 145 avis sur Google
           </a>
           <p className="font-condensed text-xs tracking-wider uppercase mt-4" style={{ color: '#858585' }}>
-            Avis collectés et vérifiés par Google. Note sujette à mise à jour.
+            Avis publiés et vérifiés par Google Maps.
           </p>
         </div>
       </div>
