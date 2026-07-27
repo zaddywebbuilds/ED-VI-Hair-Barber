@@ -99,7 +99,7 @@ export default function SalonGallery() {
   }, []);
 
   return (
-    <section className="py-20 md:py-28" style={{ background: '#F4E5D0' }}>
+    <section className="py-14 md:py-20" style={{ background: '#F4E5D0' }}>
       <div className="max-w-[1340px] mx-auto px-6 md:px-10">
 
         {/* En-tête */}

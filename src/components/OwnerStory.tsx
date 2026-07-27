@@ -12,7 +12,7 @@ const reveal = {
 
 export default function OwnerStory() {
   return (
-    <section className="py-20 md:py-28" style={{ background: '#FDF4E8' }}>
+    <section className="py-14 md:py-20" style={{ background: '#FDF4E8' }}>
       <div className="max-w-[1340px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 

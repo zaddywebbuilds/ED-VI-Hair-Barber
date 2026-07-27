@@ -60,7 +60,7 @@ export default function AppointmentForm() {
   };
 
   return (
-    <section className="py-20 md:py-32" style={{ background: '#F5EDE0' }}>
+    <section className="py-14 md:py-20" style={{ background: '#F5EDE0' }}>
       <div className="max-w-2xl mx-auto px-6">
         <p className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4" style={{ color: '#B58A4A' }}>
           Formulaire

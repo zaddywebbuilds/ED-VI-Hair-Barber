@@ -16,9 +16,20 @@ import { useOpenStatus } from '../hooks/useOpenStatus';
 // qui consulte le site à 2 h du matin ne verra rien.
 // ============================================================
 
-const FIRST_DELAY = 7000;   // 7 s avant la première carte
+const FIRST_DELAY = 4000;   // 4 s avant la première carte
 const VISIBLE_FOR = 7000;   // 7 s à l'écran
-const GAP_BETWEEN = 14000;  // 14 s entre deux cartes
+const GAP_BETWEEN = 13000;  // 13 s entre deux cartes
+
+/**
+ * Mode aperçu : ajouter « ?apercu=avis » à l'URL force l'affichage même
+ * quand le salon est fermé. Sert uniquement à contrôler le rendu ;
+ * un visiteur normal reste soumis aux heures d'ouverture.
+ */
+function previewForced(): boolean {
+  if (typeof window === 'undefined') return false;
+  return new URLSearchParams(window.location.search).get('apercu') === 'avis'
+    || window.location.hash.includes('apercu=avis');
+}
 
 export default function SocialProofPopup() {
   const { isOpen } = useOpenStatus();
@@ -29,13 +40,13 @@ export default function SocialProofPopup() {
   useEffect(() => {
     // Silencieux hors des heures d'ouverture du salon,
     // ou si le visiteur a fermé la carte.
-    if (!isOpen || dismissed) {
+    if ((!isOpen && !previewForced()) || dismissed) {
       setVisible(false);
       return;
     }
 
     // Respecte la préférence système « animations réduites »
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches && !previewForced()) return;
 
     let cancelled = false;
     let timer: number;

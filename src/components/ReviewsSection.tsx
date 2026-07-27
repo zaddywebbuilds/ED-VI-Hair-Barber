@@ -28,7 +28,7 @@ export default function ReviewsSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="py-24 md:py-36" style={{ background: '#F4E5D0' }}>
+    <section className="py-14 md:py-20" style={{ background: '#F4E5D0' }}>
       <div className="max-w-[1400px] mx-auto px-6 md:px-12" ref={ref}>
 
         {/* ── Header : titre à gauche, note à droite ── */}

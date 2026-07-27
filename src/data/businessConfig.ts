@@ -10,6 +10,9 @@ export const businessConfig = {
   category: "Barbier et coiffeur homme",
   phoneDisplay: "06 85 48 04 10",
   phoneLink: "tel:+33685480410",
+  // WhatsApp — même numéro, au format international sans « + » ni espaces
+  whatsappNumber: "33685480410",
+  whatsappDisplay: "+33 6 85 48 04 10",
   address: {
     street: "12 Rue de la Treille",
     postalCode: "63000",

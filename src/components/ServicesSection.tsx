@@ -62,7 +62,7 @@ export default function ServicesSection() {
   const others = services.filter((s) => !s.featured);
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#FDF4E8' }}>
+    <section className="py-14 md:py-20" style={{ background: '#FDF4E8' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <div ref={headingRef} className="mb-16">

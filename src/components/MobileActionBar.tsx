@@ -1,5 +1,7 @@
 import { Phone, Navigation, Calendar } from 'lucide-react';
 import { businessConfig } from '../data/businessConfig';
+import WhatsAppIcon from './WhatsAppIcon';
+import { whatsappUrl } from '../lib/whatsapp';
 
 export default function MobileActionBar() {
   return (
@@ -18,6 +20,16 @@ export default function MobileActionBar() {
       >
         <Phone size={18} style={{ color: '#B58A4A' }} />
         <span className="font-condensed text-[10px] uppercase tracking-wider">Appeler</span>
+      </a>
+      <a
+        href={whatsappUrl()}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex-1 flex flex-col items-center justify-center gap-1 transition-opacity hover:opacity-70"
+        style={{ color: '#F1E8D8', borderLeft: '1px solid rgba(181,138,74,0.15)' }}
+      >
+        <WhatsAppIcon size={18} className="text-[#25D366]" />
+        <span className="font-condensed text-[10px] uppercase tracking-wider">WhatsApp</span>
       </a>
       <a
         href={businessConfig.googleMapsUrl}

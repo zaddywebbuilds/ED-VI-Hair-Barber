@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { businessConfig } from '../data/businessConfig';
 import { useOpenStatus } from '../hooks/useOpenStatus';
+import WhatsAppIcon from './WhatsAppIcon';
+import { whatsappUrl } from '../lib/whatsapp';
 
 // Barre de réservation persistante — apparaît après le hero.
 // Le téléphone reste accessible en un geste sur mobile.
@@ -56,6 +58,18 @@ export default function StickyBookingBar() {
             >
               <Phone size={13} strokeWidth={1.9} />
               <span className="eyebrow whitespace-nowrap" style={{ letterSpacing: '0.16em' }}>Appeler</span>
+            </a>
+
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="hover"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full transition-opacity hover:opacity-90"
+              style={{ background: '#25D366', color: '#0B2E13' }}
+            >
+              <WhatsAppIcon size={14} />
+              <span className="eyebrow whitespace-nowrap" style={{ letterSpacing: '0.16em' }}>WhatsApp</span>
             </a>
 
             <Link
