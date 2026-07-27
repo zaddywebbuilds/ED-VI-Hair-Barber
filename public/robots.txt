@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zaddywebbuilds.github.io/ED-VI-Hair-Barber/sitemap.xml
