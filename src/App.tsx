@@ -8,6 +8,7 @@ import ScrollProgress from './components/ScrollProgress';
 import CustomCursor from './components/CustomCursor';
 import StickyBookingBar from './components/StickyBookingBar';
 import SocialProofPopup from './components/SocialProofPopup';
+import { useRevealWatchdog } from './hooks/useRevealWatchdog';
 
 const Home = lazy(() => import('./pages/Home'));
 const Services = lazy(() => import('./pages/Services'));
@@ -19,6 +20,10 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+
+  // Garantit qu'aucune section ne reste invisible si les animations
+  // d'apparition ne se déclenchent pas (voir useRevealWatchdog).
+  useRevealWatchdog();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2200);
