@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { businessConfig } from '../data/businessConfig';
 import Hero from '../components/Hero';
 import Marquee from '../components/Marquee';
-import StatsBand from '../components/StatsBand';
 import ManifestoSection from '../components/ManifestoSection';
 import BenefitsSection from '../components/BenefitsSection';
 import ServicesSection from '../components/ServicesSection';
@@ -59,7 +58,6 @@ export default function Home() {
         <ManifestoSection />
         <BenefitsSection />
         <ServicesSection />
-        <StatsBand />
         <StyleConsultation />
         <OwnerStory />
         <SalonGallery />

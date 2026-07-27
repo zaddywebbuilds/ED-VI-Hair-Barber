@@ -8,7 +8,7 @@ export default function FinalCTA() {
   const { isOpen, todayHours } = useOpenStatus();
 
   return (
-    <section className="py-20 md:py-28" style={{ background: '#F4E5D0' }}>
+    <section className="py-20 md:py-28" style={{ background: '#FDF4E8' }}>
       <div className="max-w-[1340px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 

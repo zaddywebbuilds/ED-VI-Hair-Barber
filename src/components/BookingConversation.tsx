@@ -12,7 +12,7 @@ const messages = [
 
 export default function BookingConversation() {
   return (
-    <section className="py-20 md:py-28" style={{ background: '#F4E5D0' }}>
+    <section className="py-20 md:py-28" style={{ background: '#FDF4E8' }}>
       <div className="max-w-2xl mx-auto px-6">
         <p className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4 text-center" style={{ color: '#B58A4A' }}>
           Prise de rendez-vous
