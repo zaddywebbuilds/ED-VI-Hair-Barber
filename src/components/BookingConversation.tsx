@@ -264,9 +264,6 @@ export default function BookingConversation() {
                 <WhatsAppIcon size={17} />
                 <span className="eyebrow" style={{ letterSpacing: '0.18em' }}>Écrire sur WhatsApp</span>
               </a>
-              <p className="font-sans text-[11px] text-center mt-3" style={{ color: '#8A7560' }}>
-                Exemple d'échange — il n'y a pas de messagerie en direct sur le site.
-              </p>
             </div>
           </motion.div>
 
@@ -281,15 +278,10 @@ export default function BookingConversation() {
           >
             <div className="p-5 md:p-6 flex-1">
               <div className="rounded-2xl p-5 md:p-6 h-full" style={{ background: '#FDF4E8' }}>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full" style={{ background: GOLD }} />
-                    <span className="font-sans text-[15px] font-semibold" style={{ color: INK }}>
-                      Choisir un créneau
-                    </span>
-                  </span>
-                  <span className="eyebrow" style={{ color: '#B0A08D', letterSpacing: '0.14em' }}>
-                    Exemple
+                <div className="flex items-center gap-2.5 mb-6">
+                  <span className="w-2 h-2 rounded-full" style={{ background: GOLD }} />
+                  <span className="font-sans text-[15px] font-semibold" style={{ color: INK }}>
+                    Choisir un créneau
                   </span>
                 </div>
 
@@ -385,9 +377,6 @@ export default function BookingConversation() {
                   Appeler le {businessConfig.phoneDisplay}
                 </span>
               </a>
-              <p className="font-sans text-[11px] text-center mt-3" style={{ color: '#8A7560' }}>
-                Maquette — le salon n'a pas encore d'agenda en ligne.
-              </p>
             </div>
           </motion.div>
         </div>
