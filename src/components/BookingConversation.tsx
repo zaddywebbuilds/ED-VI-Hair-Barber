@@ -12,19 +12,19 @@ const messages = [
 
 export default function BookingConversation() {
   return (
-    <section className="py-20 md:py-28" style={{ background: '#090909' }}>
+    <section className="py-20 md:py-28" style={{ background: '#F1E8D8' }}>
       <div className="max-w-2xl mx-auto px-6">
-        <p className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-4 text-center">
+        <p className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4 text-center" style={{ color: '#B58A4A' }}>
           Prise de rendez-vous
         </p>
-        <h2 className="font-serif text-cream text-center mb-12" style={{ fontSize: 'clamp(28px, 3.5vw, 44px)' }}>
+        <h2 className="font-serif text-center mb-12" style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', color: '#1C0F0A' }}>
           Comment ça se passe
         </h2>
 
         {/* Chat bubbles */}
         <div
-          className="rounded-sm p-6 md:p-8 space-y-4 mb-8"
-          style={{ background: '#161514' }}
+          className="rounded-2xl p-6 md:p-8 space-y-4 mb-8 shadow-md"
+          style={{ background: '#FFFFFF' }}
         >
           {messages.map((msg, i) => (
             <motion.div
@@ -36,15 +36,15 @@ export default function BookingConversation() {
               transition={{ delay: i * 0.2, duration: 0.4 }}
             >
               <div
-                className="max-w-[80%] px-4 py-3 font-sans text-sm leading-relaxed"
+                className="max-w-[80%] px-4 py-3 rounded-xl font-sans text-sm leading-relaxed"
                 style={
                   msg.from === 'salon'
-                    ? { background: '#2B211B', borderLeft: '2px solid #B58A4A', color: '#F1E8D8' }
+                    ? { background: '#F5EDE0', borderLeft: '2px solid #B58A4A', color: '#1C0F0A' }
                     : { background: '#681F2B', color: '#F1E8D8' }
                 }
               >
                 {msg.from === 'salon' && (
-                  <span className="font-condensed text-[10px] tracking-widest uppercase text-brass block mb-1">
+                  <span className="font-condensed text-[10px] tracking-widest uppercase block mb-1" style={{ color: '#B58A4A' }}>
                     ED-VI Hair Barber
                   </span>
                 )}
@@ -55,7 +55,7 @@ export default function BookingConversation() {
         </div>
 
         {/* Disclaimer */}
-        <p className="font-sans text-steel/60 text-xs text-center mb-8">
+        <p className="font-sans text-xs text-center mb-8" style={{ color: 'rgba(90,64,48,0.6)' }}>
           ED-VI vous recontactera pour confirmer le créneau. Il ne s'agit pas d'un chat en direct.
         </p>
 
@@ -63,12 +63,13 @@ export default function BookingConversation() {
         <div className="text-center">
           <a
             href={businessConfig.phoneLink}
-            className="inline-flex items-center gap-3 font-condensed tracking-[0.2em] uppercase text-cream border border-brass/40 px-8 py-4 hover:border-brass hover:bg-brass/5 transition-all"
+            className="inline-flex items-center gap-3 font-condensed tracking-[0.2em] uppercase text-white rounded-full px-8 py-4 transition-all hover:opacity-80"
+            style={{ background: '#1C0F0A' }}
           >
-            <Phone size={16} className="text-brass" />
+            <Phone size={16} style={{ color: '#B58A4A' }} />
             Appeler le salon
           </a>
-          <p className="mt-4 font-condensed text-[11px] tracking-widest uppercase text-steel">
+          <p className="mt-4 font-condensed text-[11px] tracking-widest uppercase" style={{ color: '#858585' }}>
             {businessConfig.phoneDisplay}
           </p>
         </div>

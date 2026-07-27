@@ -1,231 +1,182 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
-import { Suspense, lazy } from 'react';
 import { businessConfig } from '../data/businessConfig';
-import FloatingLabels from './FloatingLabels';
-
-const BarberScene3D = lazy(() => import('./BarberScene3D'));
 
 const fadeUp = {
-  hidden: { y: 60, opacity: 0 },
-  visible: (delay = 0) => ({ y: 0, opacity: 1, transition: { duration: 0.7, delay, ease: 'easeOut' } }),
+  hidden: { y: 40, opacity: 0 },
+  visible: (delay = 0) => ({ y: 0, opacity: 1, transition: { duration: 0.6, delay, ease: 'easeOut' } }),
 };
+
+const petals = [
+  'COUPE HOMME',
+  'BARBE',
+  'CONSEIL',
+  'PRÉCISION',
+  'FINITIONS',
+  'SUR RDV',
+];
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen overflow-hidden flex items-center"
-      style={{ background: '#090909' }}
+      className="relative min-h-screen overflow-hidden flex flex-col justify-center"
+      style={{ background: '#F1E8D8' }}
     >
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 60% 50% at 70% 50%, rgba(104,31,43,0.12) 0%, transparent 70%)',
-        }}
-      />
+      <div className="max-w-7xl mx-auto px-6 w-full pt-24 pb-16">
 
-      <div className="max-w-7xl mx-auto px-6 w-full pt-20 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+        {/* TOP ROW: Photo left | Service petals right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14 items-start">
 
-          {/* Left: Typography */}
-          <div className="relative z-10">
-            {/* Eyebrow */}
+          {/* Left: hero photo in rounded card */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <div className="rounded-2xl shadow-2xl overflow-hidden aspect-[4/5] w-full max-w-lg mx-auto lg:mx-0">
+              <img
+                src="/ED-VI-Hair-Barber/images/photo_01.jpg"
+                alt="ED-VI Hair Barber — salon de coiffure homme à Clermont-Ferrand"
+                className="w-full h-full object-cover"
+                style={{ filter: 'brightness(0.95) contrast(1.05)' }}
+              />
+            </div>
+
+            {/* Floating badge on the photo */}
+            <motion.div
+              className="absolute bottom-6 left-6 px-4 py-3 rounded-xl shadow-lg"
+              style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <p className="font-condensed text-[10px] tracking-[0.3em] uppercase" style={{ color: '#B58A4A' }}>
+                Sur rendez-vous
+              </p>
+              <p className="font-sans text-sm font-medium mt-0.5" style={{ color: '#1C0F0A' }}>
+                {businessConfig.address.street}
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: Service petal grid */}
+          <div className="flex flex-col justify-start pt-4">
             <motion.p
-              className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-6"
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={0.1}
+              className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-6"
+              style={{ color: '#B58A4A' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
             >
               Barbier • Coiffeur Homme • Clermont-Ferrand
             </motion.p>
 
-            {/* Headline */}
-            <div className="overflow-hidden mb-2">
-              <motion.h1
-                className="font-serif text-cream leading-none"
-                style={{ fontSize: 'clamp(52px, 7vw, 92px)' }}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                custom={0.2}
-              >
-                Votre style ne se
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden mb-2">
-              <motion.div
-                className="font-serif text-cream leading-none"
-                style={{ fontSize: 'clamp(52px, 7vw, 92px)' }}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                custom={0.3}
-              >
-                travaille pas
-              </motion.div>
-            </div>
-            <div className="overflow-hidden mb-8">
-              <motion.div
-                className="font-serif italic text-brass leading-none text-shadow-brass"
-                style={{ fontSize: 'clamp(52px, 7vw, 92px)' }}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                custom={0.4}
-              >
-                à la chaîne.
-              </motion.div>
+            <div className="grid grid-cols-2 gap-3 mb-8">
+              {petals.map((petal, i) => (
+                <motion.div
+                  key={petal}
+                  className="rounded-2xl px-5 py-4 flex items-center gap-3"
+                  style={{ background: '#1C0F0A' }}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.15 + i * 0.06, duration: 0.4 }}
+                >
+                  <span style={{ color: '#B58A4A', fontSize: '6px' }}>●</span>
+                  <span className="font-condensed text-[13px] tracking-[0.15em] uppercase" style={{ color: '#F1E8D8' }}>
+                    {petal}
+                  </span>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Body */}
-            <motion.p
-              className="font-sans text-paper text-base md:text-lg max-w-md mb-10 leading-relaxed"
-              style={{ fontWeight: 400 }}
+            {/* Phone */}
+            <motion.div
+              className="flex items-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              <a
+                href={businessConfig.phoneLink}
+                className="font-condensed text-base tracking-wider hover:opacity-70 transition-opacity"
+                style={{ color: '#B58A4A' }}
+              >
+                {businessConfig.phoneDisplay}
+              </a>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* BOTTOM: Headline + CTA centered */}
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Divider line */}
+          <motion.div
+            className="h-px mb-10 mx-auto"
+            style={{ background: 'rgba(28,15,10,0.15)', width: '120px' }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          />
+
+          <div className="overflow-hidden mb-2">
+            <motion.h1
+              className="font-serif leading-tight"
+              style={{ fontSize: 'clamp(44px, 6.5vw, 88px)', color: '#1C0F0A' }}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
               custom={0.5}
             >
-              Un salon calme au cœur de Clermont-Ferrand, pensé pour prendre le temps de comprendre votre style et soigner chaque finition.
-            </motion.p>
-
-            {/* Buttons */}
+              Votre style ne se travaille pas
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden mb-10">
             <motion.div
-              className="flex flex-wrap gap-4 mb-10"
+              className="font-serif italic text-shadow-brass"
+              style={{ fontSize: 'clamp(44px, 6.5vw, 88px)', color: '#B58A4A' }}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              custom={0.6}
+              custom={0.62}
             >
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-7 py-3.5 font-condensed text-sm tracking-[0.2em] uppercase text-cream transition-all hover:brightness-110"
-                style={{ background: '#681F2B' }}
-              >
-                Demander un rendez-vous
-              </Link>
-              <Link
-                to="/le-salon"
-                className="inline-flex items-center px-7 py-3.5 font-condensed text-sm tracking-[0.2em] uppercase text-cream border transition-all hover:bg-cream/5"
-                style={{ borderColor: 'rgba(241,232,216,0.25)' }}
-              >
-                Découvrir le salon
-              </Link>
-            </motion.div>
-
-            {/* Info row */}
-            <motion.div
-              className="space-y-2"
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={0.7}
-            >
-              <p className="font-condensed text-[11px] tracking-[0.25em] uppercase text-steel">
-                Sur rendez-vous • {businessConfig.address.street}
-              </p>
-              <a
-                href={businessConfig.phoneLink}
-                className="block font-condensed text-base tracking-wider text-brass hover:text-cream transition-colors"
-              >
-                {businessConfig.phoneDisplay}
-              </a>
-            </motion.div>
-
-            {/* Pills */}
-            <motion.div
-              className="flex flex-wrap gap-3 mt-8"
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={0.8}
-            >
-              {['Précision', 'Conseil', 'Finitions'].map((pill) => (
-                <span
-                  key={pill}
-                  className="font-condensed text-[11px] tracking-widest uppercase text-steel border border-steel/30 px-3 py-1"
-                >
-                  {pill}
-                </span>
-              ))}
+              à la chaîne.
             </motion.div>
           </div>
 
-          {/* Right: Image + 3D */}
-          <motion.div
-            className="relative h-[500px] lg:h-[700px] hidden lg:block"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+          <motion.p
+            className="font-sans text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+            style={{ color: '#5A4030' }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.72}
           >
-            {/* Burgundy glow behind */}
-            <div
-              className="absolute"
-              style={{
-                inset: '10%',
-                background: 'radial-gradient(ellipse, rgba(104,31,43,0.35) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-                zIndex: 0,
-              }}
-            />
+            Un salon calme au cœur de Clermont-Ferrand, pensé pour prendre le temps de comprendre votre style et soigner chaque finition.
+          </motion.p>
 
-            {/* Hero image in irregular mask */}
-            <div
-              className="absolute inset-0 overflow-hidden"
-              style={{
-                clipPath: 'polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%)',
-                zIndex: 1,
-              }}
-            >
-              <img
-                src="/ED-VI-Hair-Barber/images/photo_01.jpg"
-                alt="ED-VI Hair Barber — salon de coiffure homme à Clermont-Ferrand"
-                className="w-full h-full object-cover"
-                style={{ filter: 'brightness(0.85) contrast(1.05)' }}
-              />
-              {/* Dark overlay gradient */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(9,9,9,0.3) 0%, transparent 50%, rgba(9,9,9,0.2) 100%)',
-                }}
-              />
-            </div>
-
-            {/* Floating labels */}
-            <div className="absolute inset-0 z-10">
-              <FloatingLabels />
-            </div>
-
-            {/* 3D scene overlay - subtle, right corner */}
-            <div className="absolute bottom-0 right-0 w-48 h-48 z-20 opacity-0 lg:opacity-100">
-              <Suspense fallback={null}>
-                <BarberScene3D className="w-full h-full" />
-              </Suspense>
-            </div>
-          </motion.div>
-
-          {/* Mobile: simplified image */}
           <motion.div
-            className="relative h-72 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.82}
           >
-            <div
-              className="w-full h-full overflow-hidden"
-              style={{ clipPath: 'polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%)' }}
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-3.5 rounded-full font-condensed text-sm tracking-[0.15em] uppercase text-white transition-all hover:opacity-90 shadow-lg"
+              style={{ background: '#1C0F0A' }}
             >
-              <img
-                src="/ED-VI-Hair-Barber/images/photo_01.jpg"
-                alt="ED-VI Hair Barber — Clermont-Ferrand"
-                className="w-full h-full object-cover"
-                style={{ filter: 'brightness(0.8)' }}
-              />
-            </div>
+              Demander un rendez-vous
+            </Link>
+            <Link
+              to="/le-salon"
+              className="inline-flex items-center px-8 py-3.5 rounded-full font-condensed text-sm tracking-[0.15em] uppercase transition-all hover:bg-[#1C0F0A] hover:text-white border-2"
+              style={{ borderColor: '#1C0F0A', color: '#1C0F0A' }}
+            >
+              Découvrir le salon
+            </Link>
           </motion.div>
         </div>
       </div>
@@ -236,7 +187,7 @@ export default function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <ChevronDown size={20} className="text-brass/60" />
+        <ChevronDown size={20} style={{ color: '#B58A4A', opacity: 0.6 }} />
       </motion.div>
     </section>
   );

@@ -14,8 +14,8 @@ function ManifestoLine({ text, italic, delay }: { text: string; italic: boolean;
   return (
     <div ref={ref} className="overflow-hidden">
       <motion.div
-        className={`font-serif text-cream leading-tight ${italic ? 'italic' : ''}`}
-        style={{ fontSize: 'clamp(40px, 6vw, 88px)' }}
+        className={`font-serif leading-tight ${italic ? 'italic' : ''}`}
+        style={{ color: '#F1E8D8', fontSize: 'clamp(40px, 6vw, 88px)' }}
         initial={{ y: 80, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.7, delay, ease: 'easeOut' }}
@@ -33,7 +33,7 @@ export default function ManifestoSection() {
   return (
     <section
       className="relative py-24 md:py-36 overflow-hidden"
-      style={{ background: '#090909' }}
+      style={{ background: '#2B211B' }}
     >
       {/* Background decoration photos */}
       <div className="absolute inset-0 pointer-events-none">
@@ -68,7 +68,8 @@ export default function ManifestoSection() {
             {/* Body text */}
             <motion.p
               ref={bodyRef}
-              className="font-sans text-paper text-base md:text-lg max-w-2xl leading-relaxed"
+              className="font-sans text-base md:text-lg max-w-2xl leading-relaxed"
+              style={{ color: 'rgba(241,232,216,0.65)' }}
               initial={{ opacity: 0, y: 30 }}
               animate={bodyInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -80,8 +81,8 @@ export default function ManifestoSection() {
           {/* Vertical text */}
           <div className="hidden lg:flex items-start justify-end pt-4">
             <span
-              className="font-condensed text-steel/40 text-base tracking-[0.4em] uppercase"
-              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+              className="font-condensed text-base tracking-[0.4em] uppercase"
+              style={{ color: '#B58A4A', opacity: 0.5, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
             >
               PAS UNE USINE À COUPES
             </span>

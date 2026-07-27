@@ -28,7 +28,7 @@ export default function FinalCTA() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, rgba(9,9,9,0.88) 0%, rgba(43,33,27,0.75) 40%, rgba(104,31,43,0.6) 100%)',
+            background: 'linear-gradient(135deg, rgba(28,15,10,0.88) 0%, rgba(43,33,27,0.8) 50%, rgba(43,33,27,0.88) 100%)',
           }}
         />
       </motion.div>
@@ -84,14 +84,15 @@ export default function FinalCTA() {
         >
           <Link
             to="/contact"
-            className="px-8 py-4 font-condensed text-sm tracking-[0.2em] uppercase text-cream hover:brightness-110 transition-all"
-            style={{ background: '#681F2B' }}
+            className="px-8 py-4 rounded-full font-condensed text-sm tracking-[0.2em] uppercase text-white hover:opacity-90 transition-all shadow-lg"
+            style={{ background: '#B58A4A' }}
           >
             Demander un rendez-vous
           </Link>
           <a
             href={businessConfig.phoneLink}
-            className="inline-flex items-center gap-2 px-8 py-4 font-condensed text-sm tracking-[0.2em] uppercase text-cream border border-brass/50 hover:border-brass hover:bg-brass/10 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-condensed text-sm tracking-[0.2em] uppercase transition-all hover:bg-cream/10"
+            style={{ border: '2px solid #F1E8D8', color: '#F1E8D8' }}
           >
             <Phone size={14} />
             {businessConfig.phoneDisplay}

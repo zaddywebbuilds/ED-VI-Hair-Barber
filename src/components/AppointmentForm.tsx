@@ -21,12 +21,12 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const inputClass = `
-  w-full bg-transparent border-b border-cream/20 focus:border-brass px-0 py-3
-  font-sans text-cream text-sm outline-none transition-colors placeholder:text-steel/60
+  w-full bg-transparent px-0 py-3
+  font-sans text-sm outline-none transition-colors
   focus:ring-0
 `.trim();
 
-const labelClass = 'block font-condensed text-[11px] tracking-[0.25em] uppercase text-steel mb-2';
+const labelClass = 'block font-condensed text-[11px] tracking-[0.25em] uppercase mb-2';
 
 export default function AppointmentForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -60,15 +60,15 @@ export default function AppointmentForm() {
   };
 
   return (
-    <section className="py-20 md:py-32" style={{ background: '#090909' }}>
+    <section className="py-20 md:py-32" style={{ background: '#F5EDE0' }}>
       <div className="max-w-2xl mx-auto px-6">
-        <p className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-4">
+        <p className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4" style={{ color: '#B58A4A' }}>
           Formulaire
         </p>
-        <h2 className="font-serif text-cream mb-3" style={{ fontSize: 'clamp(32px, 4vw, 52px)' }}>
+        <h2 className="font-serif mb-3" style={{ fontSize: 'clamp(32px, 4vw, 52px)', color: '#1C0F0A' }}>
           Demander un rendez-vous
         </h2>
-        <p className="font-sans text-steel/70 text-sm mb-12">
+        <p className="font-sans text-sm mb-12" style={{ color: '#5A4030' }}>
           Votre demande sera examinée et ED-VI vous recontactera pour confirmer le rendez-vous.
         </p>
 
@@ -80,9 +80,9 @@ export default function AppointmentForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-16"
             >
-              <CheckCircle size={48} className="text-brass mx-auto mb-4" />
-              <h3 className="font-serif text-cream text-2xl mb-3">Demande envoyée.</h3>
-              <p className="font-sans text-paper/60 text-sm">
+              <CheckCircle size={48} className="mx-auto mb-4" style={{ color: '#B58A4A' }} />
+              <h3 className="font-serif text-2xl mb-3" style={{ color: '#1C0F0A' }}>Demande envoyée.</h3>
+              <p className="font-sans text-sm" style={{ color: '#5A4030' }}>
                 ED-VI vous recontactera pour confirmer le rendez-vous.
               </p>
             </motion.div>
@@ -93,16 +93,17 @@ export default function AppointmentForm() {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <AlertCircle size={40} className="text-burgundy mx-auto mb-4" />
-              <p className="font-sans text-cream/80 text-sm mb-4">
+              <AlertCircle size={40} className="mx-auto mb-4" style={{ color: '#681F2B' }} />
+              <p className="font-sans text-sm mb-4" style={{ color: '#5A4030' }}>
                 Une erreur est survenue. Appelez directement le{' '}
-                <a href={businessConfig.phoneLink} className="text-brass">
+                <a href={businessConfig.phoneLink} style={{ color: '#B58A4A' }}>
                   {businessConfig.phoneDisplay}
                 </a>.
               </p>
               <button
                 onClick={() => setStatus('idle')}
-                className="font-condensed text-xs tracking-widest uppercase text-steel hover:text-cream transition-colors"
+                className="font-condensed text-xs tracking-widest uppercase transition-colors"
+                style={{ color: '#5A4030' }}
               >
                 Réessayer
               </button>
@@ -118,33 +119,33 @@ export default function AppointmentForm() {
             >
               {/* Name */}
               <div>
-                <label htmlFor="nom" className={labelClass}>Nom *</label>
-                <input id="nom" {...register('nom')} placeholder="Votre nom" className={inputClass} />
-                {errors.nom && <p className="text-burgundy text-xs mt-1 font-sans">{errors.nom.message}</p>}
+                <label htmlFor="nom" className={labelClass} style={{ color: '#5A4030' }}>Nom *</label>
+                <input id="nom" {...register('nom')} placeholder="Votre nom" className={inputClass} style={{ color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }} />
+                {errors.nom && <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.nom.message}</p>}
               </div>
 
               {/* Phone */}
               <div>
-                <label htmlFor="telephone" className={labelClass}>Téléphone *</label>
-                <input id="telephone" {...register('telephone')} placeholder="06 XX XX XX XX" className={inputClass} type="tel" />
-                {errors.telephone && <p className="text-burgundy text-xs mt-1 font-sans">{errors.telephone.message}</p>}
+                <label htmlFor="telephone" className={labelClass} style={{ color: '#5A4030' }}>Téléphone *</label>
+                <input id="telephone" {...register('telephone')} placeholder="06 XX XX XX XX" className={inputClass} type="tel" style={{ color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }} />
+                {errors.telephone && <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.telephone.message}</p>}
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className={labelClass}>Email (optionnel)</label>
-                <input id="email" {...register('email')} placeholder="votre@email.com" className={inputClass} type="email" />
-                {errors.email && <p className="text-burgundy text-xs mt-1 font-sans">{errors.email.message}</p>}
+                <label htmlFor="email" className={labelClass} style={{ color: '#5A4030' }}>Email (optionnel)</label>
+                <input id="email" {...register('email')} placeholder="votre@email.com" className={inputClass} type="email" style={{ color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }} />
+                {errors.email && <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.email.message}</p>}
               </div>
 
               {/* Service */}
               <div>
-                <label htmlFor="prestation" className={labelClass}>Prestation *</label>
+                <label htmlFor="prestation" className={labelClass} style={{ color: '#5A4030' }}>Prestation *</label>
                 <select
                   id="prestation"
                   {...register('prestation')}
                   className={inputClass + ' cursor-pointer'}
-                  style={{ background: '#090909' }}
+                  style={{ background: '#F5EDE0', color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }}
                 >
                   <option value="coupe-homme">Coupe homme</option>
                   <option value="taille-barbe">Taille de barbe</option>
@@ -155,12 +156,12 @@ export default function AppointmentForm() {
 
               {/* Day */}
               <div>
-                <label htmlFor="jour" className={labelClass}>Jour souhaité *</label>
+                <label htmlFor="jour" className={labelClass} style={{ color: '#5A4030' }}>Jour souhaité *</label>
                 <select
                   id="jour"
                   {...register('jour')}
                   className={inputClass + ' cursor-pointer'}
-                  style={{ background: '#090909' }}
+                  style={{ background: '#F5EDE0', color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }}
                 >
                   <option value="">Choisir un jour</option>
                   <option value="Mardi">Mardi</option>
@@ -169,12 +170,12 @@ export default function AppointmentForm() {
                   <option value="Samedi">Samedi matin</option>
                   <option value="Flexible">Flexible</option>
                 </select>
-                {errors.jour && <p className="text-burgundy text-xs mt-1 font-sans">{errors.jour.message}</p>}
+                {errors.jour && <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.jour.message}</p>}
               </div>
 
               {/* Time slot */}
               <div>
-                <p className={labelClass}>Créneau préféré *</p>
+                <p className={labelClass} style={{ color: '#5A4030' }}>Créneau préféré *</p>
                 <div className="flex gap-4 mt-2">
                   {[
                     { val: 'matin', label: 'Matin' },
@@ -188,22 +189,23 @@ export default function AppointmentForm() {
                         value={val}
                         className="accent-brass"
                       />
-                      <span className="font-condensed text-xs tracking-wider uppercase text-cream/70">{label}</span>
+                      <span className="font-condensed text-xs tracking-wider uppercase" style={{ color: '#5A4030' }}>{label}</span>
                     </label>
                   ))}
                 </div>
-                {errors.creneau && <p className="text-burgundy text-xs mt-1 font-sans">{errors.creneau.message}</p>}
+                {errors.creneau && <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.creneau.message}</p>}
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className={labelClass}>Message (optionnel)</label>
+                <label htmlFor="message" className={labelClass} style={{ color: '#5A4030' }}>Message (optionnel)</label>
                 <textarea
                   id="message"
                   {...register('message')}
                   placeholder="Précisions, questions..."
                   rows={3}
                   className={inputClass + ' resize-none'}
+                  style={{ color: '#1C0F0A', borderBottom: '1px solid rgba(28,15,10,0.2)' }}
                 />
               </div>
 
@@ -215,16 +217,16 @@ export default function AppointmentForm() {
                     {...register('consentement')}
                     className="mt-0.5 accent-brass shrink-0"
                   />
-                  <span className="font-sans text-steel/70 text-xs leading-relaxed">
+                  <span className="font-sans text-xs leading-relaxed" style={{ color: '#5A4030' }}>
                     J'accepte que mes informations soient transmises au salon dans le seul but de confirmer ce rendez-vous.
                     Elles ne seront pas utilisées à d'autres fins.{' '}
-                    <Link to="/politique-de-confidentialite" className="text-brass hover:underline">
+                    <Link to="/politique-de-confidentialite" className="hover:underline" style={{ color: '#B58A4A' }}>
                       Politique de confidentialité
                     </Link>
                   </span>
                 </label>
                 {errors.consentement && (
-                  <p className="text-burgundy text-xs mt-1 font-sans">{errors.consentement.message}</p>
+                  <p className="text-xs mt-1 font-sans" style={{ color: '#681F2B' }}>{errors.consentement.message}</p>
                 )}
               </div>
 
@@ -242,11 +244,12 @@ export default function AppointmentForm() {
         </AnimatePresence>
 
         {/* Phone alternative */}
-        <div className="mt-10 pt-8 border-t border-cream/10 text-center">
-          <p className="font-sans text-steel/60 text-sm mb-3">Vous préférez appeler ?</p>
+        <div className="mt-10 pt-8 text-center" style={{ borderTop: '1px solid rgba(28,15,10,0.1)' }}>
+          <p className="font-sans text-sm mb-3" style={{ color: '#858585' }}>Vous préférez appeler ?</p>
           <a
             href={businessConfig.phoneLink}
-            className="inline-flex items-center gap-2 font-condensed text-base tracking-wider text-brass hover:text-cream transition-colors"
+            className="inline-flex items-center gap-2 font-condensed text-base tracking-wider transition-colors hover:opacity-70"
+            style={{ color: '#B58A4A' }}
           >
             <Phone size={16} />
             {businessConfig.phoneDisplay}

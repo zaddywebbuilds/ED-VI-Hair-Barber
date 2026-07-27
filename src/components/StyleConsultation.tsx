@@ -81,17 +81,17 @@ export default function StyleConsultation() {
   const selectedStyle = styles.find((s) => s.id === selected);
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#2B211B' }}>
+    <section className="py-24 md:py-32" style={{ background: '#F1E8D8' }}>
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
         <div className="mb-12">
-          <p className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-4">
+          <p className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4" style={{ color: '#B58A4A' }}>
             Conseil
           </p>
-          <h2 className="font-serif text-cream mb-4" style={{ fontSize: 'clamp(32px, 4vw, 52px)' }}>
+          <h2 className="font-serif mb-4" style={{ fontSize: 'clamp(32px, 4vw, 52px)', color: '#1C0F0A' }}>
             Pas sûr de ce qui vous va ?
           </h2>
-          <p className="font-sans text-paper/60 text-base">
+          <p className="font-sans text-base" style={{ color: '#5A4030' }}>
             Sélectionnez un style pour en savoir plus. Le choix final se fait toujours ensemble.
           </p>
         </div>
@@ -104,9 +104,9 @@ export default function StyleConsultation() {
               onClick={() => setSelected(selected === style.id ? null : style.id)}
               className="font-condensed text-sm tracking-wider uppercase px-5 py-2.5 border transition-all"
               style={{
-                borderColor: selected === style.id ? '#B58A4A' : 'rgba(241,232,216,0.2)',
-                background: selected === style.id ? 'rgba(181,138,74,0.15)' : 'transparent',
-                color: selected === style.id ? '#B58A4A' : 'rgba(241,232,216,0.6)',
+                borderColor: selected === style.id ? '#1C0F0A' : '#D9CBB8',
+                background: selected === style.id ? '#1C0F0A' : '#FFFFFF',
+                color: selected === style.id ? '#FFFFFF' : '#5A4030',
               }}
             >
               {style.label}
@@ -123,23 +123,24 @@ export default function StyleConsultation() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35 }}
-              className="flex flex-col md:flex-row gap-8 items-start p-8 border border-brass/20"
-              style={{ background: 'rgba(9,9,9,0.5)' }}
+              className="flex flex-col md:flex-row gap-8 items-start p-8 rounded-2xl shadow-md"
+              style={{ background: '#FFFFFF', border: '1px solid #D9CBB8' }}
             >
               <div className="shrink-0">
                 <StyleSilhouette styleId={selectedStyle.id} />
               </div>
               <div className="flex-1">
-                <h3 className="font-serif text-cream text-2xl mb-3">{selectedStyle.label}</h3>
-                <p className="font-sans text-paper/70 text-base leading-relaxed mb-4">
+                <h3 className="font-serif text-2xl mb-3" style={{ color: '#1C0F0A' }}>{selectedStyle.label}</h3>
+                <p className="font-sans text-base leading-relaxed mb-4" style={{ color: '#5A4030' }}>
                   {selectedStyle.description}
                 </p>
-                <p className="font-condensed text-[11px] tracking-widest uppercase text-steel mb-6">
+                <p className="font-condensed text-[11px] tracking-widest uppercase mb-6" style={{ color: '#858585' }}>
                   {selectedStyle.maintenance}
                 </p>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center font-condensed text-sm tracking-wider uppercase text-cream border border-cream/20 px-5 py-2.5 hover:border-brass hover:text-brass transition-all"
+                  className="inline-flex items-center font-condensed text-sm tracking-wider uppercase text-white rounded-full px-6 py-2.5 transition-all hover:opacity-80"
+                  style={{ background: '#1C0F0A' }}
                 >
                   En parler lors de mon rendez-vous
                 </Link>
@@ -149,7 +150,7 @@ export default function StyleConsultation() {
         </AnimatePresence>
 
         {/* Disclaimer */}
-        <p className="font-sans text-steel/50 text-xs mt-8 max-w-xl">
+        <p className="font-sans text-xs mt-8 max-w-xl" style={{ color: 'rgba(90,64,48,0.5)' }}>
           Ces inspirations sont indicatives. Le style final est décidé ensemble, en tenant compte de votre visage et de vos cheveux.
         </p>
       </div>

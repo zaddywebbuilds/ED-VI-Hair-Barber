@@ -10,48 +10,44 @@ function ServiceCard({ service, featured }: { service: typeof services[number]; 
   return (
     <motion.div
       ref={ref}
-      className="group relative overflow-hidden flex flex-col"
-      style={{ background: '#2B211B' }}
+      className="group relative bg-white rounded-2xl shadow-md overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      whileHover={{ scale: 1.015 }}
+      whileHover={{ scale: 1.015, boxShadow: '0 12px 40px rgba(28,15,10,0.12)' }}
     >
       {/* Image */}
-      <div className={`overflow-hidden ${featured ? 'aspect-video' : 'aspect-video'}`}>
+      <div className="aspect-video overflow-hidden">
         <img
           src={service.image}
           alt={`ED-VI Hair Barber — ${service.name}`}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-walnut/80 to-transparent pointer-events-none" />
       </div>
-
-      {/* Hover brass border */}
-      <div
-        className="absolute inset-0 border opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-        style={{ borderColor: '#B58A4A' }}
-      />
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className={`font-serif text-cream mb-3 ${featured ? 'text-4xl' : 'text-2xl'}`}>
+        <h3
+          className={`font-serif mb-3 ${featured ? 'text-4xl' : 'text-2xl'}`}
+          style={{ color: '#1C0F0A' }}
+        >
           {service.name}
         </h3>
-        <p className="font-sans text-paper/70 text-sm leading-relaxed flex-1 mb-4">
+        <p className="font-sans text-sm leading-relaxed flex-1 mb-6" style={{ color: '#5A4030' }}>
           {service.description}
         </p>
 
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-cream/10">
-          <span className="font-condensed text-[11px] tracking-widest uppercase text-steel">
+        <div className="flex items-center justify-between mt-auto pt-4" style={{ borderTop: '1px solid rgba(28,15,10,0.08)' }}>
+          <span className="font-condensed text-[11px] tracking-widest uppercase" style={{ color: '#B58A4A' }}>
             Prix à confirmer
           </span>
           <Link
             to="/contact"
-            className="font-condensed text-[12px] tracking-wider uppercase text-brass hover:text-cream transition-colors"
+            className="inline-flex items-center px-5 py-2 rounded-full font-condensed text-[12px] tracking-wider uppercase text-white transition-all hover:opacity-80"
+            style={{ background: '#1C0F0A' }}
           >
-            Rendez-vous →
+            Rendez-vous
           </Link>
         </div>
       </div>
@@ -66,12 +62,13 @@ export default function ServicesSection() {
   const others = services.filter((s) => !s.featured);
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#161514' }}>
+    <section className="py-24 md:py-32" style={{ background: '#F5EDE0' }}>
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <div ref={headingRef} className="mb-16">
           <motion.p
-            className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-4"
+            className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4"
+            style={{ color: '#B58A4A' }}
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
@@ -79,8 +76,8 @@ export default function ServicesSection() {
             Prestations
           </motion.p>
           <motion.h2
-            className="font-serif text-cream mb-4"
-            style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}
+            className="font-serif mb-4"
+            style={{ fontSize: 'clamp(40px, 5vw, 64px)', color: '#1C0F0A' }}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -88,7 +85,8 @@ export default function ServicesSection() {
             Ce que l'on travaille ici
           </motion.h2>
           <motion.p
-            className="font-sans text-paper/60 text-lg max-w-xl"
+            className="font-sans text-lg max-w-xl"
+            style={{ color: '#5A4030' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -98,13 +96,13 @@ export default function ServicesSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {featured && (
             <div className="lg:col-span-2">
               <ServiceCard service={featured} featured />
             </div>
           )}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             {others.map((s) => (
               <ServiceCard key={s.id} service={s} />
             ))}
@@ -115,7 +113,8 @@ export default function ServicesSection() {
         <div className="mt-12 text-center">
           <Link
             to="/prestations"
-            className="inline-flex items-center gap-2 font-condensed text-sm tracking-[0.2em] uppercase text-cream border border-cream/20 px-8 py-4 hover:border-brass hover:text-brass transition-all"
+            className="inline-flex items-center gap-2 font-condensed text-sm tracking-[0.2em] uppercase text-white px-8 py-4 rounded-full transition-all hover:opacity-80"
+            style={{ background: '#1C0F0A' }}
           >
             Voir toutes les prestations
           </Link>

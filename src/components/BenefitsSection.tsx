@@ -55,7 +55,7 @@ function Panel({ panel, reverse, index }: PanelProps) {
         <img
           src={panel.image}
           alt={panel.imageAlt}
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 rounded-2xl"
           loading="lazy"
         />
       </div>
@@ -63,7 +63,7 @@ function Panel({ panel, reverse, index }: PanelProps) {
       {/* Text */}
       <div
         className="md:w-1/2 flex flex-col justify-center px-8 md:px-16 py-12"
-        style={{ background: index % 2 === 0 ? '#F1E8D8' : '#D9CBB8' }}
+        style={{ background: index % 2 === 0 ? '#FFFFFF' : '#F1E8D8' }}
       >
         {/* Big number */}
         <span
@@ -78,10 +78,10 @@ function Panel({ panel, reverse, index }: PanelProps) {
           {panel.num}
         </span>
 
-        <h3 className="font-serif text-walnut mb-4" style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}>
+        <h3 className="font-serif mb-4" style={{ fontSize: 'clamp(32px, 4vw, 48px)', color: '#1C0F0A' }}>
           {panel.title}
         </h3>
-        <p className="font-sans text-walnut/70 text-base leading-relaxed">
+        <p className="font-sans text-base leading-relaxed" style={{ color: '#5A4030' }}>
           {panel.body}
         </p>
       </div>

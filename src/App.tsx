@@ -27,7 +27,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="grain relative">
+        <div className="relative">
           <ScrollProgress />
           <Navbar />
           <Suspense

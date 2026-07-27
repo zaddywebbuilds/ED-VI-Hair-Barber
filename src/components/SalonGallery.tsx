@@ -40,7 +40,7 @@ function Lightbox({ index, onClose, onPrev, onNext }: LightboxProps) {
   return (
     <motion.div
       className="fixed inset-0 z-[300] flex items-center justify-center"
-      style={{ background: 'rgba(9,9,9,0.95)' }}
+      style={{ background: 'rgba(28,15,10,0.95)' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -122,19 +122,19 @@ export default function SalonGallery() {
   }, []);
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden" style={{ background: '#090909' }}>
+    <section className="py-20 md:py-28 overflow-hidden" style={{ background: '#1C0F0A' }}>
       {/* Heading */}
       <div ref={headingRef} className="max-w-7xl mx-auto px-6 mb-12">
         <motion.p
-          className="font-condensed text-[11px] tracking-[0.35em] uppercase text-brass mb-4"
+          className="font-condensed text-[11px] tracking-[0.35em] uppercase mb-4" style={{ color: '#B58A4A' }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
         >
           Galerie
         </motion.p>
         <motion.h2
-          className="font-serif text-cream"
-          style={{ fontSize: 'clamp(32px, 4vw, 52px)' }}
+          className="font-serif"
+          style={{ fontSize: 'clamp(32px, 4vw, 52px)', color: '#F1E8D8' }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1 }}
@@ -174,7 +174,8 @@ export default function SalonGallery() {
       <div className="max-w-7xl mx-auto px-6 mt-10 text-right">
         <a
           href="#/galerie"
-          className="font-condensed text-[12px] tracking-[0.2em] uppercase text-brass hover:text-cream transition-colors"
+          className="font-condensed text-[12px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+          style={{ color: '#B58A4A' }}
         >
           Voir toute la galerie →
         </a>

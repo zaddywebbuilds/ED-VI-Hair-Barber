@@ -27,16 +27,16 @@ export default function Navbar() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: isScrolled ? 'rgba(22,21,20,0.85)' : 'transparent',
+          background: isScrolled ? 'rgba(241,232,216,0.92)' : 'transparent',
           backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-          borderBottom: isScrolled ? '1px solid rgba(241,232,216,0.08)' : 'none',
+          borderBottom: isScrolled ? '1px solid rgba(181,138,74,0.2)' : 'none',
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <EDVILogo variant="monogram" size={36} />
-            <span className="font-condensed text-xs tracking-[0.3em] uppercase text-cream/70 hidden sm:block">
+            <EDVILogo variant="monogram" size={36} color="#1C0F0A" />
+            <span className="font-condensed text-xs tracking-[0.3em] uppercase hidden sm:block" style={{ color: '#5A4030' }}>
               HAIR BARBER
             </span>
           </Link>
@@ -50,9 +50,10 @@ export default function Navbar() {
                 end={link.to === '/'}
                 className={({ isActive }) =>
                   `nav-link font-condensed text-[13px] tracking-[0.15em] uppercase transition-colors ${
-                    isActive ? 'text-brass active' : 'text-cream/70 hover:text-cream'
+                    isActive ? 'text-brass active' : 'hover:text-brass'
                   }`
                 }
+                style={({ isActive }) => ({ color: isActive ? '#B58A4A' : '#1C0F0A' })}
               >
                 {link.label}
               </NavLink>
@@ -63,14 +64,15 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center px-5 py-2 font-condensed text-[12px] tracking-[0.2em] uppercase text-cream transition-colors"
-              style={{ background: '#681F2B' }}
+              className="hidden md:inline-flex items-center px-5 py-2 rounded-full font-condensed text-[12px] tracking-[0.2em] uppercase text-white transition-all hover:opacity-90"
+              style={{ background: '#B58A4A' }}
             >
               Rendez-vous
             </Link>
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden text-cream/80 hover:text-cream p-1"
+              className="md:hidden p-1 hover:opacity-70 transition-opacity"
+              style={{ color: '#1C0F0A' }}
               aria-label="Ouvrir le menu"
             >
               <Menu size={22} />

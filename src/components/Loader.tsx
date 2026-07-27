@@ -15,7 +15,7 @@ export default function Loader({ onComplete }: LoaderProps) {
     <AnimatePresence>
       <motion.div
         className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
-        style={{ background: '#090909' }}
+        style={{ background: '#F1E8D8' }}
         initial={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
@@ -89,8 +89,8 @@ export default function Loader({ onComplete }: LoaderProps) {
         {/* ED-VI Title */}
         <div className="overflow-hidden">
           <motion.h1
-            className="font-serif text-cream text-5xl tracking-[0.2em]"
-            style={{ textShadow: '0 0 40px rgba(181,138,74,0.3)' }}
+            className="font-serif text-5xl tracking-[0.2em]"
+            style={{ color: '#1C0F0A' }}
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
@@ -101,7 +101,8 @@ export default function Loader({ onComplete }: LoaderProps) {
 
         {/* Subtitle */}
         <motion.p
-          className="font-condensed text-steel text-xs tracking-[0.4em] uppercase mt-4"
+          className="font-condensed text-xs tracking-[0.4em] uppercase mt-4"
+          style={{ color: '#5A4030' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.5 }}
@@ -115,7 +116,7 @@ export default function Loader({ onComplete }: LoaderProps) {
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           transition={{ duration: 0.6, delay: 1.6, ease: 'easeInOut' }}
-          style={{ transformOrigin: 'bottom', background: '#090909', zIndex: 201 }}
+          style={{ transformOrigin: 'bottom', background: '#F1E8D8', zIndex: 201 }}
         />
       </motion.div>
     </AnimatePresence>

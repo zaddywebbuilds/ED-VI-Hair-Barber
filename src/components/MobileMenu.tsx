@@ -29,7 +29,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[100] flex flex-col"
-          style={{ background: '#090909' }}
+          style={{ background: '#F1E8D8' }}
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navigation"
@@ -38,7 +38,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="flex justify-end p-6">
             <button
               onClick={onClose}
-              className="text-cream/60 hover:text-cream transition-colors p-2"
+              className="p-2 hover:opacity-60 transition-opacity"
+              style={{ color: '#1C0F0A' }}
               aria-label="Fermer le menu"
             >
               <X size={24} />
@@ -59,8 +60,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   onClick={onClose}
                   className="flex items-baseline gap-4 group py-2"
                 >
-                  <span className="font-condensed text-steel text-sm tracking-widest">{item.num}</span>
-                  <span className="font-serif text-5xl text-cream group-hover:text-brass transition-colors leading-tight">
+                  <span className="font-condensed text-sm tracking-widest" style={{ color: '#B58A4A' }}>{item.num}</span>
+                  <span className="font-serif text-5xl leading-tight group-hover:text-brass transition-colors" style={{ color: '#1C0F0A' }}>
                     {item.label}
                   </span>
                 </Link>
@@ -73,12 +74,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="px-8 pb-24 space-y-3 border-t border-cream/10 pt-6"
+            className="px-8 pb-24 space-y-3 pt-6"
+            style={{ borderTop: '1px solid rgba(28,15,10,0.1)' }}
           >
-            <p className="font-condensed text-xs tracking-widest text-steel uppercase">
+            <p className="font-condensed text-xs tracking-widest uppercase" style={{ color: '#5A4030' }}>
               {businessConfig.address.street}, {businessConfig.address.city}
             </p>
-            <a href={businessConfig.phoneLink} className="block font-condensed text-sm tracking-wider text-brass">
+            <a href={businessConfig.phoneLink} className="block font-condensed text-sm tracking-wider" style={{ color: '#B58A4A' }}>
               {businessConfig.phoneDisplay}
             </a>
             {dayName && (
@@ -87,7 +89,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   className="inline-block w-2 h-2 rounded-full"
                   style={{ background: salonOpen ? '#4CAF50' : '#858585' }}
                 />
-                <span className="font-condensed text-xs tracking-wider text-steel uppercase">
+                <span className="font-condensed text-xs tracking-wider uppercase" style={{ color: '#5A4030' }}>
                   {salonOpen ? `Ouvert — ${todayHours}` : 'Fermé'}
                 </span>
               </div>
@@ -95,8 +97,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <Link
               to="/contact"
               onClick={onClose}
-              className="inline-block mt-4 px-6 py-3 font-condensed text-sm tracking-widest uppercase text-cream"
-              style={{ background: '#681F2B' }}
+              className="inline-block mt-4 px-6 py-3 rounded-full font-condensed text-sm tracking-widest uppercase text-white"
+              style={{ background: '#1C0F0A' }}
             >
               Demander un rendez-vous
             </Link>
