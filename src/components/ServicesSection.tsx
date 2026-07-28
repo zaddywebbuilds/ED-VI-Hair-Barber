@@ -16,12 +16,12 @@ function ServiceCard({ service, featured }: { service: typeof services[number]; 
       transition={{ duration: 0.6, ease: 'easeOut' }}
       whileHover={{ scale: 1.015, boxShadow: '0 12px 40px rgba(28,15,10,0.12)' }}
     >
-      {/* Image */}
-      <div className="aspect-video overflow-hidden">
+      {/* Image — proportions d'origine, aucun recadrage */}
+      <div className="overflow-hidden">
         <img
           src={service.image}
           alt={`ED-VI Hair Barber — ${service.name}`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
       </div>

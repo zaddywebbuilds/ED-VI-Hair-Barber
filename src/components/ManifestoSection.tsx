@@ -30,8 +30,7 @@ export default function ManifestoSection() {
                 src="/ED-VI-Hair-Barber/images/photo_04.jpg"
                 alt="Le fauteuil de barbier du salon ED-VI"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </motion.figure>
 
@@ -48,8 +47,7 @@ export default function ManifestoSection() {
                 src="/ED-VI-Hair-Barber/images/photo_05.jpg"
                 alt="Coin d'attente et décoration du salon"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </motion.figure>
           </div>

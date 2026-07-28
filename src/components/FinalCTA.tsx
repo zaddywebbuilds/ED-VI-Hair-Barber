@@ -28,8 +28,7 @@ export default function FinalCTA() {
                 src="/ED-VI-Hair-Barber/images/photo_19.jpg"
                 alt="Fauteuil de barbier prêt pour le prochain rendez-vous"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </figure>
             <figure
@@ -40,8 +39,7 @@ export default function FinalCTA() {
                 src="/ED-VI-Hair-Barber/images/photo_20.jpg"
                 alt="Ambiance du salon ED-VI Hair Barber"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </figure>
           </motion.div>

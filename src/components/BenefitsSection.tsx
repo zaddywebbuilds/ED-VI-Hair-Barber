@@ -77,8 +77,7 @@ export default function BenefitsSection() {
                   src={panel.image}
                   alt={panel.imageAlt}
                   loading="lazy"
-                  className="w-full h-full object-cover img-zoom"
-                  style={{ aspectRatio: '4 / 3' }}
+                  className="w-full h-auto img-zoom"
                 />
               </div>
 

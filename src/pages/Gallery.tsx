@@ -101,11 +101,12 @@ export default function Gallery() {
 
         {/* Grid */}
         <div className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Mosaïque : chaque photo garde ses proportions d'origine */}
+          <div className="columns-1 sm:columns-2 lg:columns-4 gap-3">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={img.id}
-                className="overflow-hidden cursor-pointer group aspect-square"
+                className="break-inside-avoid mb-3 overflow-hidden cursor-pointer group rounded-2xl"
                 onClick={() => setLightboxIndex(i)}
                 initial={{ opacity: 0, scale: 0.97 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -116,7 +117,7 @@ export default function Gallery() {
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+                  className="w-full h-auto transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
                 />
               </motion.div>
             ))}

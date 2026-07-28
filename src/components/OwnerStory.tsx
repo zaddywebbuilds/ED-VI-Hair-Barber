@@ -108,8 +108,7 @@ export default function OwnerStory() {
                 src="/ED-VI-Hair-Barber/images/photo_13.jpg"
                 alt="Intérieur du salon ED-VI Hair Barber"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </motion.figure>
 
@@ -126,8 +125,7 @@ export default function OwnerStory() {
                 src="/ED-VI-Hair-Barber/images/photo_14.jpg"
                 alt="Décoration vintage du salon"
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </motion.figure>
           </div>

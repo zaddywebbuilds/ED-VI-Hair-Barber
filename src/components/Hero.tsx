@@ -158,8 +158,7 @@ export default function Hero() {
                 <img
                   src="/ED-VI-Hair-Barber/images/photo_01.jpg"
                   alt="La salle de coupe du salon ED-VI Hair Barber à Clermont-Ferrand"
-                  className="w-full h-full object-cover img-zoom"
-                  style={{ aspectRatio: '4 / 3' }}
+                  className="w-full h-auto img-zoom"
                 />
               </motion.figure>
 
@@ -174,8 +173,7 @@ export default function Hero() {
                 <img
                   src="/ED-VI-Hair-Barber/images/photo_02.jpg"
                   alt="Poste de coiffage et miroir du salon"
-                  className="w-full h-full object-cover img-zoom"
-                  style={{ aspectRatio: '1 / 1' }}
+                  className="w-full h-auto img-zoom"
                 />
               </motion.figure>
 
@@ -189,8 +187,7 @@ export default function Hero() {
                 <img
                   src="/ED-VI-Hair-Barber/images/photo_03.jpg"
                   alt="Détail du matériel de barbier"
-                  className="w-full h-full object-cover img-zoom"
-                  style={{ aspectRatio: '1 / 1' }}
+                  className="w-full h-auto img-zoom"
                 />
               </motion.figure>
             </div>

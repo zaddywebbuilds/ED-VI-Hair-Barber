@@ -41,7 +41,8 @@ export const businessConfig = {
     { day: "Mercredi", open: false, hours: null },
     { day: "Jeudi", open: true, hours: "10h00 – 16h30" },
     { day: "Vendredi", open: true, hours: "10h00 – 18h30" },
-    { day: "Samedi", open: true, hours: "10h00 – 14h00" },
+    // Corrigé d'après la pancarte du salon (photo_17.jpg) : 10h – 15h
+    { day: "Samedi", open: true, hours: "10h00 – 15h00" },
     { day: "Dimanche", open: false, hours: null },
   ],
   // Informations historiques — affichées uniquement si verifiedByOwner: true

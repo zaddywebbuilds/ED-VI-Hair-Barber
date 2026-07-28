@@ -162,8 +162,7 @@ export default function SalonGallery() {
                 src={img.src}
                 alt={img.alt}
                 loading="lazy"
-                className="w-full h-full object-cover img-zoom"
-                style={{ aspectRatio: '3 / 4' }}
+                className="w-full h-auto img-zoom"
               />
             </motion.button>
           ))}
