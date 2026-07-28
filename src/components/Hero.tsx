@@ -146,50 +146,44 @@ export default function Hero() {
 
           {/* ── Colonne images ── */}
           <div className="order-1 lg:order-2">
-            <div className="grid grid-cols-2 gap-4">
-              {/* Grande image */}
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
+              {/* Grande image — le salon en entier */}
               <motion.figure
-                className="col-span-2 overflow-hidden group"
+                className="col-span-3 overflow-hidden group"
                 style={{ borderRadius: 32, boxShadow: '0 30px 80px rgba(180,110,80,0.28)' }}
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               >
                 <img
-                  src="/ED-VI-Hair-Barber/images/photo_01.jpg"
-                  alt="La salle de coupe du salon ED-VI Hair Barber à Clermont-Ferrand"
+                  src="/ED-VI-Hair-Barber/images/heroimage.jpg"
+                  alt="Eddy et un client dans le salon ED-VI Hair Barber à Clermont-Ferrand"
                   className="w-full h-auto img-zoom"
+                  fetchPriority="high"
                 />
               </motion.figure>
 
-              {/* Deux vignettes */}
-              <motion.figure
-                className="overflow-hidden group"
-                style={{ borderRadius: 22, boxShadow: '0 12px 36px rgba(160,100,70,0.18)' }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <img
-                  src="/ED-VI-Hair-Barber/images/photo_02.jpg"
-                  alt="Poste de coiffage et miroir du salon"
-                  className="w-full h-auto img-zoom"
-                />
-              </motion.figure>
-
-              <motion.figure
-                className="overflow-hidden group"
-                style={{ borderRadius: 22, boxShadow: '0 12px 36px rgba(160,100,70,0.18)' }}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <img
-                  src="/ED-VI-Hair-Barber/images/photo_03.jpg"
-                  alt="Détail du matériel de barbier"
-                  className="w-full h-auto img-zoom"
-                />
-              </motion.figure>
+              {/* Trois vignettes */}
+              {[
+                { src: 'photo_01.jpg', alt: 'La salle de coupe du salon' },
+                { src: 'photo_02.jpg', alt: 'Poste de coiffage et miroir du salon' },
+                { src: 'photo_03.jpg', alt: 'Le meuble de barbier et son miroir' },
+              ].map((img, i) => (
+                <motion.figure
+                  key={img.src}
+                  className="overflow-hidden group self-start"
+                  style={{ borderRadius: 18, boxShadow: '0 12px 36px rgba(160,100,70,0.18)' }}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, delay: 0.12 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <img
+                    src={`/ED-VI-Hair-Barber/images/${img.src}`}
+                    alt={img.alt}
+                    className="w-full h-auto img-zoom"
+                  />
+                </motion.figure>
+              ))}
             </div>
           </div>
         </div>

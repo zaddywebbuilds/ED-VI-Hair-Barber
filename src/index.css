@@ -164,6 +164,21 @@ body {
 /* ── Reveal primitives ─────────────────────────────────────── */
 .mask-line { overflow: hidden; display: block; }
 
+/* ── Bandeau d'avis ────────────────────────────────────────────
+   L'animation ne touche QUE la position, jamais l'opacité.
+   Une animation figée conserve sa première image : si elle portait
+   sur l'opacité, une animation en pause (onglet en arrière-plan)
+   laisserait la carte invisible. En n'animant que `transform`,
+   l'opacité vaut toujours 1 et la carte reste lisible — au pire
+   décalée de 24px, ce qui ne gêne personne.                      */
+@keyframes popup-in {
+  from { transform: translate3d(-24px, 8px, 0); }
+  to   { transform: none; }
+}
+.popup-card {
+  animation: popup-in 0.5s var(--ease-out);
+}
+
 /* ── Indicateur « en train d'écrire » ──────────────────────────
    En CSS et non via Framer Motion : une animation `repeat: Infinity`
    à l'intérieur d'un <AnimatePresence> empêche la sortie de se

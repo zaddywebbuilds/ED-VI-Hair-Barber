@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { reviews } from '../data/reviewsData';
 import { businessConfig } from '../data/businessConfig';
@@ -72,16 +71,14 @@ export default function SocialProofPopup() {
 
   const review = reviews[index];
 
+  if (!visible || dismissed) return null;
+
   return (
-    <AnimatePresence>
-      {visible && !dismissed && (
-        <motion.aside
+    <>
+      {(
+        <aside
           key={index}
-          initial={{ opacity: 0, x: -28, y: 10 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          exit={{ opacity: 0, x: -28, y: 10 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed left-4 z-40 w-[min(340px,calc(100vw-2rem))] bottom-24 md:bottom-6"
+          className="popup-card fixed left-4 z-40 w-[min(340px,calc(100vw-2rem))] bottom-24 md:bottom-6"
           aria-live="polite"
         >
           <div
@@ -152,8 +149,8 @@ export default function SocialProofPopup() {
               </span>
             </a>
           </div>
-        </motion.aside>
+        </aside>
       )}
-    </AnimatePresence>
+    </>
   );
 }
