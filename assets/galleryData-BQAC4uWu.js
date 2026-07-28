@@ -1,0 +1,1 @@
+const t=r=>`/ED-VI-Hair-Barber/images/photo_${String(r).padStart(2,"0")}.jpg`,o=Array.from({length:19},(r,a)=>({id:a+1,src:t(a+1),alt:`ED-VI Hair Barber, Clermont-Ferrand — photo ${a+1}`,caption:""})),e=[15,16,17,18].map(r=>({id:r,src:t(r),alt:`ED-VI Hair Barber, Clermont-Ferrand — photo ${r}`,caption:""}));export{o as g,e as h};
