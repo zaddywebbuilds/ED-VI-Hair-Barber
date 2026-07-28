@@ -1,12 +1,12 @@
 // ============================================================
 // Photos du salon — ED-VI Hair Barber
 // ------------------------------------------------------------
-// Répartition des 20 photos sur le site, sans doublon :
-//   01–03  Hero                 04–05  Manifeste
-//   06–09  BenefitsSection      10–12  Prestations (servicesData)
-//   13–14  OwnerStory           15–18  Galerie (accueil)
-//   19–20  FinalCTA
-// La page /galerie affiche l'ensemble des 20 photos.
+// Répartition des photos sur le site, sans doublon :
+//   heroimage + 01–03  Hero      04–05  Manifeste
+//   06–09  BenefitsSection       10–12  Prestations (servicesData)
+//   13–14  OwnerStory            15–18  Galerie (accueil)
+//   19     FinalCTA
+// La page /galerie affiche les photos 01 à 19.
 // ============================================================
 
 export interface GalleryImage {
@@ -19,8 +19,8 @@ export interface GalleryImage {
 const src = (n: number) =>
   `/ED-VI-Hair-Barber/images/photo_${String(n).padStart(2, '0')}.jpg`;
 
-/** Les 20 photos — utilisées sur la page /galerie. */
-export const galleryImages: GalleryImage[] = Array.from({ length: 20 }, (_, i) => ({
+/** Les photos numérotées — utilisées sur la page /galerie. */
+export const galleryImages: GalleryImage[] = Array.from({ length: 19 }, (_, i) => ({
   id: i + 1,
   src: src(i + 1),
   alt: `ED-VI Hair Barber, Clermont-Ferrand — photo ${i + 1}`,

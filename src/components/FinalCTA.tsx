@@ -14,7 +14,7 @@ export default function FinalCTA() {
 
           {/* ── Images ── */}
           <motion.div
-            className="grid grid-cols-2 gap-4 order-2 lg:order-1"
+            className="order-2 lg:order-1"
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -22,22 +22,11 @@ export default function FinalCTA() {
           >
             <figure
               className="overflow-hidden group"
-              style={{ borderRadius: 26, boxShadow: '0 24px 60px rgba(180,110,80,0.24)' }}
+              style={{ borderRadius: 28, boxShadow: '0 24px 60px rgba(180,110,80,0.24)' }}
             >
               <img
                 src="/ED-VI-Hair-Barber/images/photo_19.jpg"
-                alt="Fauteuil de barbier prêt pour le prochain rendez-vous"
-                loading="lazy"
-                className="w-full h-auto img-zoom"
-              />
-            </figure>
-            <figure
-              className="overflow-hidden group mt-8"
-              style={{ borderRadius: 26, boxShadow: '0 24px 60px rgba(180,110,80,0.24)' }}
-            >
-              <img
-                src="/ED-VI-Hair-Barber/images/photo_20.jpg"
-                alt="Ambiance du salon ED-VI Hair Barber"
+                alt="Le poste de coiffage du salon, prêt pour le prochain rendez-vous"
                 loading="lazy"
                 className="w-full h-auto img-zoom"
               />
